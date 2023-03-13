@@ -1,0 +1,53 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Merienda", cursive;
+}
+
+.tabs {
+    padding: 10px;
+    display: flex;
+}
+
+.tabs-nav {
+    display: flex;
+    align-items: center;
+
+}
+
+.nav-item {
+    color: #000000;
+    cursor: pointer;
+    padding: 5px 10px;
+    text-transform: capitalize;
+    transition: color 0.5s linear;
+    -webkit-transition: color 0.5s linear;
+    -o-transition: color 0.5s linear;
+    -moz-transition: color 0.5s linear;
+
+}
+
+.active {
+    border-bottom: 2px solid #00d0ab;
+    color: #00d0ab;
+    transition: color 0.5s linear;
+    -webkit-transition: color 0.5s linear;
+    -o-transition: color 0.5s linear;
+    -moz-transition: color 0.5s linear;
+
+}
+
+.refuge {
+    width: 15%;
+}
+
+.products {
+    width: 70%;
+}
+
+.tabs-content {
+    margin-top: 20px;
+}
