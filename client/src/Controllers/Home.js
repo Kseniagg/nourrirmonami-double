@@ -6,8 +6,6 @@ import Nav from "../Components/Nav";
 const Home = () => {
     return (
         <>
-
-            <Nav />
             <Minishop />
             <Total />
         </>

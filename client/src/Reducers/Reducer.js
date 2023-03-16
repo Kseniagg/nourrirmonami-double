@@ -1,9 +1,68 @@
 import {
-    //ADD_TEA,
-    //DELETE_TEA,
-    //DELETE_ALL,
+    ADD_PRODUCT,
+    DELETE_PRODUCT,
+    DELETE_ALL,
     CONNECT_USER,
     DECONNECT_USER,
+    GET_ORDER
+} from "../Constants/actions";
+
+let stateInit;
+
+if (sessionStorage.getItem("basket")) {
+    stateInit = JSON.parse(sessionStorage.getItem("basket"));
+
+} else {
+    stateInit = {
+        // montant du panier
+        prixFinal: 0,
+        // ajout des produits dans un tableau pour les afficher
+        products: [],
+        // récupération de l'id de l'utilisateur
+        idDonateur: null,
+
+        quantite: 0,
+    };
+}
+
+const reducer = (state = stateInit, action = {}) => {
+    console.log(state);
+
+    switch (action.type) {
+
+        case ADD_PRODUCT:
+            //on doit retourner un nouveau state
+            return {
+                ...state,
+                prixFinal: state.price,
+                products: [...state.products, action.products],
+                quantite: state.quantite + 1,
+            };
+
+        case CONNECT_USER:
+            return {
+                ...state,
+                idDonateur: action.id,
+            };
+        default:
+            return state;
+    }
+};
+
+export default reducer;
+
+
+
+
+
+
+/* import {
+    ADD_PRODUCT,
+    DELETE_PRODUCT,
+    DELETE_ALL,
+    CONNECT_USER,
+    DECONNECT_USER,
+    GET_ORDER
 } from "../Constants/actions";
 
 // définition de la source de vérité
@@ -14,63 +73,76 @@ let stateInit;
 
 if (sessionStorage.getItem("basket")) {
     stateInit = JSON.parse(sessionStorage.getItem("basket"));
+
 } else {
     stateInit = {
         // montant du panier
-        //montant: 0,
-        // ajout des thés dans un tableau pour les afficher
-        // teas: [],
+        montant: 0,
+        // ajout des produits dans un tableau pour les afficher
+        products: [],
         // récupération de l'id de l'utilisateur
-        idUser: null,
+        idDonateur: null,
+
+        count: 0,
+
+        selectedProduct: {},
     };
 }
 
 const reducer = (state = stateInit, action = {}) => {
-    console.log(action);
+    console.log(state);
     //gestion des actions du Reducer
     switch (action.type) {
-        /* case ADD_TEA:
+
+        case ADD_PRODUCT:
             //on doit retourner un nouveau state
             return {
                 ...state,
-                montant: state.montant + action.tea.price,
-                teas: [...state.teas, action.tea],
-            }; */
+                montant: state.montant + action.price,
+                products: [...state.products, action.products],
+                count: state.count + 1,
+            };
 
-        /* case DELETE_TEA:
+        case DELETE_PRODUCT:
             let montant = 0;
-            let teas = [...state.teas];
-            teas.splice(action.teaId, 1);
+            let products = [...state.products];
+            products.splice(action.prodId, 1);
 
-            for (const tea of teas) {
-                montant += tea.price;
+            for (const prod of products) {
+                montant += prod.price;
             }
 
             return {
                 ...state,
                 montant: montant,
-                teas: [...teas],
+                products: [...products],
             };
+
+
+
         case DELETE_ALL:
             return {
                 ...state,
                 montant: 0,
-                teas: [],
-            }; */
+                products: [],
+            };
 
         case CONNECT_USER:
             return {
                 ...state,
-                idUser: action.id,
+                idDonateur: action.id,
             };
         case DECONNECT_USER:
             return {
                 ...state,
-                idUser: null,
+                idDonateur: null,
             };
         default:
             return state;
     }
 };
 
+
+
 export default reducer;
+ */

@@ -5,10 +5,14 @@ import Refuge from "./Controllers/Refuge";
 import Home from "./Controllers/Home";
 import Shop from "./Controllers/Shop";
 import Connexion from "./Controllers/Connexion";
+import CreateAccount from "./Controllers/CreateAccount";
+import Cart from "./Controllers/Cart";
+import Header from "./Components/Header";
 
 function App() {
   return (
     <>
+      <Header />
       <BrowserRouter>
         <Routes>
           <Route path="/refuges" element={<Refuges />} />
@@ -16,6 +20,8 @@ function App() {
           <Route path="/refuge/:id" element={<Refuge />} />
           <Route path="/shop" element={<Shop />} />
           <Route path="/connexion" element={<Connexion />} />
+          <Route path="/createAccount" element={<CreateAccount />} />
+          <Route path="/cart" element={<Cart />} />
         </Routes>
       </BrowserRouter>
 

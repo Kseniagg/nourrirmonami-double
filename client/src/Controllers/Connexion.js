@@ -33,7 +33,7 @@ const Connexion = () => {
         };
 
         // attention au port que vous utilisez !!
-        let req = new Request("/connexion", {
+        let req = new Request("/api/connexion", {
             method: "POST",
             body: JSON.stringify(datas),
             headers: {
@@ -54,6 +54,7 @@ const Connexion = () => {
                         id: response.id,
                     });
                     setMessage("");
+                    navigate("/shop");
                     // sinon on envoie un message d'erreur (contenu dans la réponse de la requête)
                 } else {
                     setMessage(response.message);

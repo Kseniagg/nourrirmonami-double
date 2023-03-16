@@ -1,17 +1,33 @@
 import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "../css/shop.css";
 
 
 const Shop = () => {
-
     const [refuges, setRefuges] = useState([]);
     const [products, setProducts] = useState([]);
-
-    //const types = ["shop-1", "shop-2", "shop-3", "shop-4"];
     const [active, setActive] = useState([]);
-    //const [activeprod, setActiveprod] = useState();
+    const [message, setMessage] = useState("");
+    //const { totalPanier } = useSelector(state => state);
+    const dispatch = useDispatch();
 
-    //console.log(refuges);
+    const { panier } = useSelector(state => state);
+    //const { products } = useSelector(state => state);
+
+
+    const addProduct = (e) => {
+        dispatch({
+            type: "ADD_PRODUCT",
+            products:
+            {
+                type: "ADD_PRODUCT",
+                prodId: e.currentTarget.dataset.id,
+                name: e.currentTarget.dataset.name,
+                price: e.currentTarget.dataset.price,
+            }
+        });
+        setMessage("Vous avez ajouté l'article !");
+    };
 
     useEffect(() => {
 
@@ -23,7 +39,7 @@ const Shop = () => {
         fetch("/products")
             .then((response) => response.json())
             .then((res) => {
-                setProducts(res)
+                setProducts(res);
             });
 
     }, [])
@@ -32,7 +48,7 @@ const Shop = () => {
     return (
         <>
             <section >
-                <div classname="tabs">
+                <div className="tabs">
                     <h3>Refuge</h3>
                     {refuges.map((ref, i) => (
 
@@ -45,9 +61,6 @@ const Shop = () => {
                                 <p>{ref.name}</p>
                             </div>
 
-
-
-
                             {ref === active && (
                                 <div className="products">
 
@@ -59,7 +72,9 @@ const Shop = () => {
                                             <div key={i} className={"tabs-content"}>
                                                 <p>{prod.name}</p>
                                                 <p>Refuge: {prod.refuge_id}</p>
-                                                <button>Acheter</button>
+                                                <p>{prod.price} €</p>
+                                                <button onClick={addProduct} data-id={i} data-name={prod.name} data-price={prod.price}>Ajouter au panier</button>
+                                                {message !== "" && <p>{message}</p>}
                                             </div>
 
                                         )))}

@@ -8,6 +8,7 @@ const Nav = () => {
                 <a href="/refuges">Refuges</a>
                 <a href="/shop">Produits</a>
                 <a href="/connexion">Connexion</a>
+                <a href="/cart">Panier</a>
             </div>
 
         </>
