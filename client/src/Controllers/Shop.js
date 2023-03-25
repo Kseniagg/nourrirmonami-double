@@ -8,11 +8,8 @@ const Shop = () => {
     const [products, setProducts] = useState([]);
     const [active, setActive] = useState([]);
     const [message, setMessage] = useState("");
-    //const { totalPanier } = useSelector(state => state);
     const dispatch = useDispatch();
 
-    const { panier } = useSelector(state => state);
-    //const { products } = useSelector(state => state);
 
 
     const addProduct = (e) => {
@@ -20,8 +17,7 @@ const Shop = () => {
             type: "ADD_PRODUCT",
             products:
             {
-                type: "ADD_PRODUCT",
-                prodId: e.currentTarget.dataset.id,
+                id: e.currentTarget.dataset.id,
                 name: e.currentTarget.dataset.name,
                 price: e.currentTarget.dataset.price,
             }
@@ -65,7 +61,7 @@ const Shop = () => {
                                 <div className="products">
 
                                     <p>Products :</p>
-
+                                    {message !== "" && <p>{message}</p>}
                                     {products.map((prod, i) => (
                                         prod.refuge_id === ref.id && (
 
@@ -74,11 +70,9 @@ const Shop = () => {
                                                 <p>Refuge: {prod.refuge_id}</p>
                                                 <p>{prod.price} €</p>
                                                 <button onClick={addProduct} data-id={i} data-name={prod.name} data-price={prod.price}>Ajouter au panier</button>
-                                                {message !== "" && <p>{message}</p>}
+
                                             </div>
-
                                         )))}
-
 
                                 </div>
                             )}

@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
+
 const Connexion = () => {
 
     const [email, setEmail] = useState("");
@@ -33,7 +34,7 @@ const Connexion = () => {
         };
 
         // attention au port que vous utilisez !!
-        let req = new Request("/api/connexion", {
+        let req = new Request("/connexion", {
             method: "POST",
             body: JSON.stringify(datas),
             headers: {
@@ -83,6 +84,7 @@ const Connexion = () => {
             <p>
                 <a href="/createAccount">Je n'ai pas encore de compte</a>
             </p>
+
         </>
     );
 };

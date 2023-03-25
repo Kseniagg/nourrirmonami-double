@@ -1,5 +1,6 @@
 import "../css/nav.css";
 
+
 const Nav = () => {
     return (
         <>
@@ -9,6 +10,8 @@ const Nav = () => {
                 <a href="/shop">Produits</a>
                 <a href="/connexion">Connexion</a>
                 <a href="/cart">Panier</a>
+                <a href="/deconnexion">Deconnecter</a>
+
             </div>
 
         </>

@@ -4,7 +4,7 @@ import {
     DELETE_ALL,
     CONNECT_USER,
     DECONNECT_USER,
-    GET_ORDER
+    ADD_QUANTITE
 } from "../Constants/actions";
 
 let stateInit;
@@ -15,13 +15,15 @@ if (sessionStorage.getItem("basket")) {
 } else {
     stateInit = {
         // montant du panier
-        prixFinal: 0,
+        totalPrice: 0,
         // ajout des produits dans un tableau pour les afficher
         products: [],
         // récupération de l'id de l'utilisateur
         idDonateur: null,
 
         quantite: 0,
+
+        countId: 0,
     };
 }
 
@@ -34,15 +36,48 @@ const reducer = (state = stateInit, action = {}) => {
             //on doit retourner un nouveau state
             return {
                 ...state,
-                prixFinal: state.price,
+                totalPrice: parseFloat(state.totalPrice) + parseFloat(action.products.price),
                 products: [...state.products, action.products],
                 quantite: state.quantite + 1,
             };
+
+        case DELETE_PRODUCT:
+            let total = 0;
+            let products = [...state.products];
+            products.splice(action.prodId, 1);
+
+            for (const prod of products) {
+                total += parseFloat(prod.price);
+            }
+
+            return {
+                ...state,
+                totalPrice: total,
+                products: [...products],
+            };
+
+        /*  case ADD_QUANTITE:
+             let quant = 0;
+             let product = [...state.products];
+             for (const prod of product) {
+                 if (product.prodId === prod.id)
+                     quant += 1;
+             }
+             return {
+                 ...state,
+                 countId: quant,
+                 products: [...product],
+             }; */
 
         case CONNECT_USER:
             return {
                 ...state,
                 idDonateur: action.id,
+            };
+        case DECONNECT_USER:
+            return {
+                ...state,
+                idDonateur: null,
             };
         default:
             return state;

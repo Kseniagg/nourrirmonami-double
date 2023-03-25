@@ -8,6 +8,7 @@ import Connexion from "./Controllers/Connexion";
 import CreateAccount from "./Controllers/CreateAccount";
 import Cart from "./Controllers/Cart";
 import Header from "./Components/Header";
+import Deconnexion from "./Controllers/Deconnexion";
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
           <Route path="/connexion" element={<Connexion />} />
           <Route path="/createAccount" element={<CreateAccount />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/deconnexion" element={<Deconnexion />} />
         </Routes>
       </BrowserRouter>
 
