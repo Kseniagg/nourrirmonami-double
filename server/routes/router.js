@@ -24,9 +24,9 @@ router.get("/parrain", Partenaires);
 
 //USER
 router.post("/createAccount", UserRegister);     // CreateAccount
-router.post("/api/connexion", UserLogin);       // Connexion
-
+router.post("/connexion", UserLogin);       // Connexion
+router.post("/deconnexion", UserLogin);
 //ORDER
-router.post("/api/addOrder", NewOrder);
+router.post("/addOrder", NewOrder);
 
 export default router;
