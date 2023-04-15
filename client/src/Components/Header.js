@@ -3,7 +3,14 @@ import Nav from "./Nav";
 const Header = () => {
     return (
         <>
-            <Nav />
+            <header>
+                <div className="container header">
+                    <div className="logo">
+                        <a href="/">Nourrir mon ami</a>
+                    </div>
+                    <Nav />
+                </div>
+            </header>
         </>
     )
 

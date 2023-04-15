@@ -1,0 +1,51 @@
+.refuges_article {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 12em;
+    margin-top: 0.5em;
+}
+
+.refuges_article h2 {
+    display: inline-block;
+    background-color: #fff;
+    margin-bottom: 3em;
+    margin-right: 5em;
+}
+
+.refuges_article a {
+    display: inline-block;
+    border: solid 1px;
+    border-radius: 0.4rem;
+    height: 25px;
+    text-decoration: none;
+    margin-top: 3em;
+    background-color: #fff;
+}
+
+.refuges_article:nth-child(1) {
+    background-image: url("../../public/img/background/refuge-cat.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 60%;
+}
+
+.refuges_article:nth-child(2) {
+    background-image: url("../../public/img/background/refuge-dog.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: bottom;
+}
+
+.refuges_article:nth-child(3) {
+    background-image: url("../../public/img/background/refuge-rongeur.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.refuges_article:nth-child(4) {
+    background-image: url("../../public/img/background/refuge-poisson.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}

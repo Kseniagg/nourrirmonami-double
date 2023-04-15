@@ -1,13 +1,8 @@
-* {
-    margin: 0;
-    padding: 0;
-}
-
 body {
     font-family: "Merienda", cursive;
 }
 
-.tabs {
+/* .tabs {
     padding: 10px;
 }
 
@@ -26,7 +21,6 @@ body {
     -webkit-transition: color 0.5s linear;
     -o-transition: color 0.5s linear;
     -moz-transition: color 0.5s linear;
-    display: flex;
 }
 
 .active {
@@ -36,11 +30,11 @@ body {
     -webkit-transition: color 0.5s linear;
     -o-transition: color 0.5s linear;
     -moz-transition: color 0.5s linear;
-
+    display: flex;
 }
 
 .refuge {
-    width: 15%;
+    display: flex;
 }
 
 .products {
@@ -49,4 +43,36 @@ body {
 
 .tabs-content {
     margin-top: 20px;
+} */
+.general {
+    display: flex;
+}
+
+.img_products {
+    width: 20%;
+}
+
+.tabs-refuges {
+    display: flex;
+    flex-direction: column;
+    width: 60em;
+}
+
+.tabs-refuges h3 {
+    width: 10em;
+}
+
+.refuge p {
+    width: 10em;
+    cursor: pointer;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.tabs-content {
+    width: 30%;
 }

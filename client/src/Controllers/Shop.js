@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import "../css/common.css";
 import "../css/shop.css";
 
 
@@ -8,6 +9,7 @@ const Shop = () => {
     const [products, setProducts] = useState([]);
     const [active, setActive] = useState([]);
     const [message, setMessage] = useState("");
+    const [onglet, setOnglet] = useState(1);
     const dispatch = useDispatch();
 
 
@@ -43,43 +45,48 @@ const Shop = () => {
 
     return (
         <>
-            <section >
-                <div className="tabs">
+            <section className="container general">
+                <div className="tabs-refuges">
                     <h3>Refuge</h3>
                     {refuges.map((ref, i) => (
 
-                        <div className={`${active === ref ? "nav-item active" : "nav-item"}`}
+
+                        <div className="refuge"
                             key={i}
-                            onClick={() => { setActive(ref) }}
-                        >
+                            onClick={() => setOnglet(ref.id)}>
 
-                            <div className="refuge">
-                                <p>{ref.name}</p>
-                            </div>
 
-                            {ref === active && (
-                                <div className="products">
+                            <p>{ref.name}</p>
 
-                                    <p>Products :</p>
-                                    {message !== "" && <p>{message}</p>}
-                                    {products.map((prod, i) => (
-                                        prod.refuge_id === ref.id && (
-
-                                            <div key={i} className={"tabs-content"}>
-                                                <p>{prod.name}</p>
-                                                <p>Refuge: {prod.refuge_id}</p>
-                                                <p>{prod.price} €</p>
-                                                <button onClick={addProduct} data-id={i} data-name={prod.name} data-price={prod.price}>Ajouter au panier</button>
-
-                                            </div>
-                                        )))}
-
-                                </div>
-                            )}
-
-                        </div>
-                    ))};
+                        </div>))}
                 </div>
+                {/* {ref === active && (
+                                <div className={`${active === ref ? "nav-item active" : "nav-item"}`}> */}
+                {refuges.map((ref, i) => (
+                    <div >
+                        {onglet === ref.id && (
+                            <div className="products">
+                                {message !== "" && <p>{message}</p>}
+                                {products.map((prod, i) => (
+                                    prod.refuge_id === ref.id && (
+
+                                        <div key={i} className={"tabs-content"}>
+                                            <p>{prod.name}</p>
+                                            <p>Refuge: {prod.refuge_id}</p>
+                                            <img className="img_products" src={"/img/" + prod.image} />
+                                            <p>{prod.price} €</p>
+                                            <button onClick={addProduct} data-id={i} data-name={prod.name} data-price={prod.price}>Ajouter au panier</button>
+
+                                        </div>
+                                    )))}
+
+                            </div>
+                        )}
+                    </div>
+
+
+
+                ))}
             </section>
 
 

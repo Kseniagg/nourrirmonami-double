@@ -14,13 +14,13 @@ const Minishop = () => {
 
     return (
         <>
-            <section>
+            <section className="cards">
                 {products.map((prod, i) => (
-                    <div key={i}>
-                        <img src={"/img/" + prod.image} />
+                    <div className="card" key={i}>
+                        <div className="img_card"><img className="img" src={"/img/" + prod.image} /></div>
                         <p>{prod.name}</p>
                         <a href="#">{prod.refName}</a>
-                        <button>Acheter</button>
+                        <button className="button">Acheter</button>
                     </div>
                 ))}
             </section>

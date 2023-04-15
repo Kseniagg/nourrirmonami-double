@@ -9,12 +9,14 @@ import CreateAccount from "./Controllers/CreateAccount";
 import Cart from "./Controllers/Cart";
 import Header from "./Components/Header";
 import Deconnexion from "./Controllers/Deconnexion";
+import Dashboard from "./Controllers/Dashboard";
+import Onglet from "./Controllers/Onglet";
 
 function App() {
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/refuges" element={<Refuges />} />
           <Route path="/" element={<Home />} />
@@ -24,6 +26,8 @@ function App() {
           <Route path="/createAccount" element={<CreateAccount />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/deconnexion" element={<Deconnexion />} />
+          <Route path="/moncompte" element={<Dashboard />} />
+          <Route path="/n" element={<Onglet />} />
         </Routes>
       </BrowserRouter>
 

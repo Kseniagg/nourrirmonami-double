@@ -68,6 +68,12 @@ const reducer = (state = stateInit, action = {}) => {
                  countId: quant,
                  products: [...product],
              }; */
+        case DELETE_ALL:
+            return {
+                ...state,
+                totalPrice: 0,
+                products: [],
+            };
 
         case CONNECT_USER:
             return {

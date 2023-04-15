@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/common.css";
 
 const Cart = () => {
     const [message, setMessage] = useState("");
@@ -37,7 +38,7 @@ const Cart = () => {
         //envoi de la commande en base de données
         //envoi des données en POST
         let data = {
-            //idDonateur: idDonateur,
+            idDonateur: idDonateur,
             /*  products: {
                  id: e.currentTarget.dataset.id,
                  price: e.currentTarget.dataset.products.price,
@@ -60,50 +61,53 @@ const Cart = () => {
             .then((response) => response.text())
             .then((response) => {
                 //on vide le panier au moment de l'envoi de la commande
-                if (response.error === null) {
-                    dispatch({
-                        type: "DELETE_ALL",
-                    });
-                    //navigate("/shop");
-                } else {
-                    console.log(response.error);
-                }
+                /* if (response.error === null) { */
+                dispatch({
+                    type: "DELETE_ALL",
+                });
+                setMessage("Vous avez validé la commande")
+                //navigate("/shop");
+                /*  } else {
+                     console.log(response.error);
+                 } */
             });
         //};
     };
 
     return (
         <>
-            <h1>Votre panier</h1>
-            {products.map((prod, i) => (
-                <article className="panier" key={i}>
-                    {/* <img src={"/img/" + prod.image} alt={prod.name} /> */}
+            <section className="container">
+                <h1>Votre panier</h1>
+                {products.map((prod, i) => (
+                    <article className="panier" key={i}>
+                        {/* <img src={"/img/" + prod.image} alt={prod.name} /> */}
 
-                    <h3>{prod.name}</h3>
-                    <p>{prod.price}€</p>
-                    {/*  <button data-id={i} onClick={addQty}>Add</button>
+                        <h3>{prod.name}</h3>
+                        <p>{prod.price}€</p>
+                        {/*  <button data-id={i} onClick={addQty}>Add</button>
  */}
-                    <button data-id={i} onClick={deleteProduct}>Delete</button>
+                        <button data-id={i} onClick={deleteProduct}>Delete</button>
 
 
 
-                </article>
-            ))}
-            <p>Total: {totalPrice} €</p>
+                    </article>
+                ))}
+                <p>Total: {totalPrice} €</p>
 
-            {products.length !== 0 ? (
-                <p>
+                {products.length !== 0 ? (
+                    <p>
 
-                    <button className="btn" onClick={validOrder}>
-                        Valider la commande
-                    </button>
+                        <button className="btn" onClick={validOrder}>
+                            Valider la commande
+                        </button>
 
-                </p>
-            ) : (
-                <p>Votre panier est vide</p>
-            )}
-            {/* si il y a un message alors on l'affiche*/}
-            {message !== "" && <p>{message}</p>}
+                    </p>
+                ) : (
+                    <p>Votre panier est vide</p>
+                )}
+                {/* si il y a un message alors on l'affiche*/}
+                {message !== "" && <p>{message}</p>}
+            </section>
         </>
     );
 };

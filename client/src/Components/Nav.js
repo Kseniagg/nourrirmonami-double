@@ -1,17 +1,20 @@
-import "../css/nav.css";
-
+import { useSelector } from "react-redux";
+import { useState } from "react";
+import Deconnexion from "../Controllers/Deconnexion"
 
 const Nav = () => {
+    const { idDonateur } = useSelector((state) => state);
     return (
         <>
+
             <div className="nav">
                 <a href="/">Accueil</a>
                 <a href="/refuges">Refuges</a>
                 <a href="/shop">Produits</a>
-                <a href="/connexion">Connexion</a>
+                {!idDonateur && <a href="/connexion">Connexion</a>}
                 <a href="/cart">Panier</a>
-                <a href="/deconnexion">Deconnecter</a>
-
+                {idDonateur && <a href="/moncompte">Mon compte</a>}
+                {idDonateur && <Deconnexion />}
             </div>
 
         </>

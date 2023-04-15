@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import "../css/common.css";
+import "../css/refuges_page.css";
 
 const Refuges = () => {
 
@@ -15,9 +17,9 @@ const Refuges = () => {
     return (
         <>
 
-            <section>
+            <section className="container">
                 {refuges.map((ref, i) => (
-                    <div key={i}>
+                    <div key={i} className="refuges_article">
                         <h2>{ref.name}</h2>
                         <a href={"/refuge/" + ref.id}>Lire plus</a>
                     </div>

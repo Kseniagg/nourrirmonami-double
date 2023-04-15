@@ -3,7 +3,7 @@ import { useState } from "react";
 // on en aura besoin pour récupérer des state
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import "../css/common.css";
 
 const Connexion = () => {
 
@@ -65,26 +65,27 @@ const Connexion = () => {
 
     return (
         <>
-            <h1>Connexion</h1>
-            {/* message à afficher en cas d'erreur*/}
-            <p style={{ color: "red" }}>{message}</p>
-            <form>
-                <div>
-                    <label htmlFor="email">Votre email</label>
-                    <input type="email" id="email" value={email} onChange={changeEmail} />
-                </div>
-                <div>
-                    <label htmlFor="password">Votre mot de passe</label>
-                    <input type="password" id="password" value={password} onChange={changePassword} />
-                </div>
-                <button className="btn" type="button" onClick={submit}>
-                    Se connecter
-                </button>
-            </form>
-            <p>
-                <a href="/createAccount">Je n'ai pas encore de compte</a>
-            </p>
-
+            <section className="container">
+                <h1>Connexion</h1>
+                {/* message à afficher en cas d'erreur*/}
+                <p style={{ color: "red" }}>{message}</p>
+                <form>
+                    <div>
+                        <label htmlFor="email">Votre email</label>
+                        <input type="email" id="email" value={email} onChange={changeEmail} />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Votre mot de passe</label>
+                        <input type="password" id="password" value={password} onChange={changePassword} />
+                    </div>
+                    <button className="btn" type="button" onClick={submit}>
+                        Se connecter
+                    </button>
+                </form>
+                <p>
+                    <a href="/createAccount">Créer un compte</a>
+                </p>
+            </section>
         </>
     );
 };

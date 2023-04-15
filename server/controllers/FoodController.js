@@ -23,12 +23,14 @@ export const GetAllRefuges = (req, res) => {
 export const GetRefugeById = (req, res) => {
     let id = req.params.id;
 
-    pool.query(`SELECT refuges.name, refuges.id, refuges.description FROM refuges WHERE refuges.id = ?
-                `, [id], (error, refuge, fields) => {
-        res.json(refuge[0]);
-        console.log(refuge[0]);
-        //console.log(error);
-    },
+    pool.query(`SELECT refuges.name, refuges.id, refuges.description 
+                FROM refuges 
+                WHERE refuges.id = ?`,
+        [id], (error, refuge, fields) => {
+            res.json(refuge[0]);
+            //console.log(refuge[0]);
+            //console.log(error);
+        },
     );
 };
 

@@ -21,17 +21,22 @@ const Total = () => {
 
     return (
         <>
-            <div>
+            <section className="total-fond">
                 {fund.map((fun, i) => (
                     <div key={i}>
-                        <p>Fond recueillis: {fun.total}</p>
+                        <p className="total-figure">{fun.total}</p>
+                        <p>fond recueillis</p>
                     </div>
                 ))}
-            </div>
-
-            <div>
-                <p>Nombre de partenaires: {parrain.length} </p>
-            </div>
+                <div>
+                    <p className="total-figure">123</p>
+                    <p>animaux sont nourris</p>
+                </div>
+                <div>
+                    <p className="total-figure">{parrain.length}</p>
+                    <p>nombre de partenaires</p>
+                </div>
+            </section>
         </>
 
     );

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/common.css";
 
 const CreateAccount = () => {
     const [nom, setNom] = useState("");
@@ -8,10 +9,12 @@ const CreateAccount = () => {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
 
+    const isSubmittable = () => (email ? true : false);
+
     const navigate = useNavigate();
 
     const handleChange = (e) => {
-        switch (e.target.id) {
+        switch (e.target.name) {
             //console.log(e.target.id);
             case 'nom':
                 setNom(e.target.value);
@@ -65,32 +68,34 @@ const CreateAccount = () => {
 
     return (
         <>
-            <h1>Créer un compte</h1>
-            {message !== "" && <p>{message}</p>}
-            <form id="cr">
-                <div>
-                    <label htmlFor="nom">Votre nom</label>
-                    <input type="text" id="nom" value={nom} onChange={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="prenom">Votre prénom</label>
-                    <input type="text" id="prenom" value={prenom} onChange={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="email">Votre email</label>
-                    <input type="email" id="email" value={email} onChange={handleChange} />
-                </div>
-                <div>
-                    <label htmlFor="password">Votre mot de passe</label>
-                    <input type="password" id="password" value={password} onChange={handleChange} />
-                </div>
-                <button className="btn" type="button" onClick={submit}>
-                    Créer un compte
-                </button>
-            </form>
-            <p>
-                <a href="/connexion">J'ai déjà un compte</a>
-            </p>
+            <section className="container">
+                <h1>Créer un compte</h1>
+                {message !== "" && <p>{message}</p>}
+                <form id="cr">
+                    <div>
+                        <label htmlFor="nom">Votre nom</label>
+                        <input type="text" name="nom" value={nom} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label htmlFor="prenom">Votre prénom</label>
+                        <input type="text" name="prenom" value={prenom} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label htmlFor="email">Votre email</label>
+                        <input type="email" name="email" value={email} onChange={handleChange} />
+                    </div>
+                    <div>
+                        <label htmlFor="password">Votre mot de passe</label>
+                        <input type="password" name="password" value={password} onChange={handleChange} />
+                    </div>
+                    <button className="btn" disabled={!isSubmittable()} type="button" onClick={submit}>
+                        Créer un compte
+                    </button>
+                </form>
+                <p>
+                    <a href="/connexion">J'ai déjà un compte</a>
+                </p>
+            </section>
         </>
     );
 };
