@@ -10,7 +10,7 @@ import Cart from "./Controllers/Cart";
 import Header from "./Components/Header";
 import Deconnexion from "./Controllers/Deconnexion";
 import Dashboard from "./Controllers/Dashboard";
-import Onglet from "./Controllers/Onglet";
+import Footer from "./Components/Footer";
 
 function App() {
   return (
@@ -27,8 +27,8 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/deconnexion" element={<Deconnexion />} />
           <Route path="/moncompte" element={<Dashboard />} />
-          <Route path="/n" element={<Onglet />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
 
     </>

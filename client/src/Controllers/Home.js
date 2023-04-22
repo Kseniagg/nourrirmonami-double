@@ -1,8 +1,6 @@
 import Minishop from "../Components/Minishop";
 import Total from "../Components/Total";
-import Nav from "../Components/Nav";
-import "../css/common.css";
-import "../css/home.css";
+import "../css/Home.css";
 
 
 const Home = () => {

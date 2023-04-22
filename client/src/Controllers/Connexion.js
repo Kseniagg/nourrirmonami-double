@@ -3,7 +3,6 @@ import { useState } from "react";
 // on en aura besoin pour récupérer des state
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import "../css/common.css";
 
 const Connexion = () => {
 
@@ -11,17 +10,13 @@ const Connexion = () => {
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
 
-    //useNavigate permettra d'effectuer une redirection
     const navigate = useNavigate();
-
-    //useDispatch permettra d'appeler une action du reducer afin d'écrire dans le state global
     const dispatch = useDispatch();
 
     // récupèration des valeur des input
     const changeEmail = (e) => {
         setEmail(e.target.value);
     };
-
     const changePassword = (e) => {
         setPassword(e.target.value);
     };
@@ -32,9 +27,7 @@ const Connexion = () => {
             email: email,
             password: password,
         };
-
-        // attention au port que vous utilisez !!
-        let req = new Request("/connexion", {
+        let request = new Request("/connexion", {
             method: "POST",
             body: JSON.stringify(datas),
             headers: {
@@ -43,7 +36,7 @@ const Connexion = () => {
             },
         });
 
-        fetch(req)
+        fetch(request)
             .then((response) => response.json())
             .then((response) => {
                 // reponse générée dans le controller (donc si les identifiants de connexion sont ok)

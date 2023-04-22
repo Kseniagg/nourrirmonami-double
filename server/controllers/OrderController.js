@@ -20,9 +20,11 @@ export const GetOrderById = (req, res) => {
     let id = req.params.id;
     console.log(`order: ${id}`);
     pool.query(
-        `SELECT orders.id, orders.price, orders.product_id, orders.date
+        `SELECT orders.id, orders.product_id, orders.date,
+        SUM(orders.price) as total
         FROM orders 
-        WHERE donateur_id = ?`,
+        WHERE donateur_id = ?
+        GROUP BY id ORDER BY orders.id DESC`,
         [id],
         function (error, orders, fields) {
             res.json(orders);

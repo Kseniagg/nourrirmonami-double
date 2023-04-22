@@ -109,11 +109,9 @@ const UserDashboard = () => {
                 return response.json()
             } */)
             .then((event) => {
-
                 dispatch({
                     type: "DECONNECT_USER",
                 });
-                event.preventDefault();
             })
             .catch((err) => {
                 console.log(err)

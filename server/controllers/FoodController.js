@@ -2,7 +2,11 @@ import pool from "../config/database.js";
 
 // récupération de 4 produits aléatoires
 export const RandomProduct = (req, res) => {
-    pool.query(`SELECT products.id, products.image, products.name, products.refuge_id, products.description, refuges.name as refName FROM products INNER JOIN refuges ON products.refuge_id = refuges.id ORDER BY RAND() LIMIT 4`,
+    pool.query(`SELECT products.id, products.image, products.name, products.refuge_id, products.price, products.description, refuges.name as refName 
+                FROM products
+                INNER JOIN refuges ON products.refuge_id = refuges.id
+                ORDER BY RAND()
+                LIMIT 4`,
         function (error, products, fields) {
             res.json(products);
             //console.log(products);

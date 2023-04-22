@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import "../css/common.css";
 
 const Cart = () => {
     const [message, setMessage] = useState("");

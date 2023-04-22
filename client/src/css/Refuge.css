@@ -1,26 +1,25 @@
-.general {
-    display: flex;
+h3 span {
+    color: #133769;
+    text-transform: uppercase;
 }
 
-.column-refuges {
+.info {
     display: flex;
-    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 3em;
+}
+
+.info_text {
+    width: 60%;
     text-align: left;
 }
 
-.active {
-    border-bottom: 2px solid;
-    border-color: #783fcc;
+.info_img {
+    width: 25%;
 }
 
-.refuge p {
-    width: 12em;
-    cursor: pointer;
-}
-
-/*  ***********  CARDS  ************** */
-
-.cards_shop {
+.cards {
     display: flex;
     flex-wrap: wrap;
     margin: 2em 0 2em 1.5em;

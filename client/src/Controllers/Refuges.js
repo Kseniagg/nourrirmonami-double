@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
-import "../css/common.css";
-import "../css/refuges_page.css";
+import "../css/Refuges.css";
 
 const Refuges = () => {
 
@@ -21,7 +20,7 @@ const Refuges = () => {
                 {refuges.map((ref, i) => (
                     <div key={i} className="refuges_article">
                         <h2>{ref.name}</h2>
-                        <a href={"/refuge/" + ref.id}>Lire plus</a>
+                        <a href={"/refuge/" + ref.id}>En savoir plus</a>
                     </div>
 
 

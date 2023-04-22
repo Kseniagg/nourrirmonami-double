@@ -1,15 +1,14 @@
 import { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import "../css/common.css";
-import "../css/shop.css";
+import { useDispatch } from "react-redux";
+import "../css/Shop.css";
 
 
 const Shop = () => {
     const [refuges, setRefuges] = useState([]);
     const [products, setProducts] = useState([]);
-    const [active, setActive] = useState([]);
     const [message, setMessage] = useState("");
-    const [onglet, setOnglet] = useState(1);
+    const [active, setActive] = useState(1);
+    const [activeMessage, setActiveMessage] = useState(false);
     const dispatch = useDispatch();
 
 
@@ -41,39 +40,50 @@ const Shop = () => {
             });
 
     }, [])
+    // toggle popup style
+    const handleClick = (e) => {
+
+        if (e.currentTarget.style = "hidden" && message === "") {
+            e.currentTarget.style = "popup";
+            setMessage("Vous avez ajouté l'article !")
+        } else {
+            e.currentTarget.style = "hidden";
+            setMessage("")
+        };
+    };
 
 
     return (
         <>
             <section className="container general">
-                <div className="tabs-refuges">
+                <div className="column-refuges">
                     <h3>Refuge</h3>
                     {refuges.map((ref, i) => (
 
 
-                        <div className="refuge"
+                        <div className={`${active === ref.id ? "refuge active" : "refuge"}`}
                             key={i}
-                            onClick={() => setOnglet(ref.id)}>
-
-
+                            onClick={() => setActive(ref.id)}>
                             <p>{ref.name}</p>
-
                         </div>))}
                 </div>
                 {/* {ref === active && (
                                 <div className={`${active === ref ? "nav-item active" : "nav-item"}`}> */}
-                {refuges.map((ref, i) => (
-                    <div >
-                        {onglet === ref.id && (
-                            <div className="products">
-                                {message !== "" && <p>{message}</p>}
+                {refuges.map((ref, k) => (
+                    <div key={k}>
+                        {active === ref.id && (
+                            <div className="cards_shop">
+                                {message !== "" && <p className={activeMessage ? "hidden" : "popup"} onClick={handleClick}>{message}</p>}
                                 {products.map((prod, i) => (
                                     prod.refuge_id === ref.id && (
 
-                                        <div key={i} className={"tabs-content"}>
+                                        <div key={i} className="card">
+
+                                            {/* <p>{prod.description}</p> */}
+                                            <div className="img_card">
+                                                <img src={"/img/" + prod.image} alt={prod.name} />
+                                            </div>
                                             <p>{prod.name}</p>
-                                            <p>Refuge: {prod.refuge_id}</p>
-                                            <img className="img_products" src={"/img/" + prod.image} />
                                             <p>{prod.price} €</p>
                                             <button onClick={addProduct} data-id={i} data-name={prod.name} data-price={prod.price}>Ajouter au panier</button>
 

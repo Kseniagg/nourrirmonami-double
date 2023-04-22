@@ -1,38 +1,157 @@
-.App {
+body {
+  margin: 0;
+  font-family: Roboto, sans-serif;
+  font-size: 18px;
+  box-sizing: border-box;
+}
+
+.container {
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* **********   HEADER  **************/
+
+header {
+  width: 100%;
+  background-color: #2E76E4;
+  padding: 2.5em 0;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
+}
+
+.logo a {
+  color: #fff;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+/* *********** NAV  ***************** */
+
+.nav {
+  display: inline-block;
+}
+
+.nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-right: 17px;
+  margin-left: 18px;
+  padding: 5px 10px;
+}
+
+.nav a:hover {
+  background-color: #fff;
+  color: #00748D;
+}
+
+/* **********************    POPUP-MESSAGE   *********************** */
+.box_popup {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.popup {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  background-color: rgba(46, 118, 228, 0.8);
+  border: solid 1px;
+  border-radius: 6px;
+  border-color: #2f3d52;
+  color: #fff;
+  -webkit-animation: fadeIn 1s;
+  animation: fadeIn 1s;
+  padding: 0.8rem 0.8rem;
 }
 
-@keyframes App-logo-spin {
+.hidden {
+  visibility: hidden;
+  display: none;
+}
+
+/* Add animation */
+@-webkit-keyframes fadeIn {
   from {
-    transform: rotate(0deg);
+    opacity: 0;
   }
+
   to {
-    transform: rotate(360deg);
+    opacity: 1;
   }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+/* ******** FOOTER  ************ */
+
+footer {
+  width: 100%;
+  background-color: #2f3d52;
+  padding: 5rem 0 5rem 0;
+  color: #fff;
+  margin-top: 1rem;
+}
+
+footer a {
+  text-decoration: none;
+  color: #fff;
+}
+
+footer a:hover {
+  color: #2E76E4;
+}
+
+.footer {
+  display: flex;
+  justify-content: space-around;
+  padding: 0;
+  text-align: center;
+}
+
+.footer>li {
+  width: 28%;
+}
+
+.footer li {
+  list-style: none;
+  font-size: 16px;
+  margin-bottom: 0.3rem;
+}
+
+li>p {
+  text-transform: uppercase;
+  font-size: 18px;
+}
+
+ul {
+  padding: 0;
+  margin: 0;
+}
+
+.reseaux {
+  display: flex;
+  justify-content: center;
+}
+
+.reseaux i {
+  margin-right: 15px;
+}
+
+.reseaux i:hover {
+  color: #2E76E4;
 }

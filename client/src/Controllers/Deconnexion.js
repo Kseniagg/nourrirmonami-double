@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
-import "../css/deconnexion.css";
+import "../css/Deconnexion.css";
 
 const Deconnexion = () => {
     const navigate = useNavigate();
