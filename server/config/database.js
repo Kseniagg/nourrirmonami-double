@@ -8,12 +8,10 @@ let pool = mysql.createPool({
     database: "kseniiagladkova_nourrirmonami",
 });
 
-// Connexion à la DB
+// Connexion à la BDD
 pool.getConnection((err, connection) => {
     console.log("Connected to the database");
     if (err) throw err;
 });
-
-
 
 export default pool;

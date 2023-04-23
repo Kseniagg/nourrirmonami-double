@@ -1,33 +1,46 @@
-// Ici on part un peu sur le même principe que la page de création du compte
 import { useState } from "react";
-// on en aura besoin pour récupérer des state
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 const Connexion = () => {
-
+    // des variables pour des données
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+    // des variables pour des style css
+    const [active, setActive] = useState(false);
 
+    // variables pour une redirection et d'appeler une action (reducer)
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
-    // récupèration des valeur des input
-    const changeEmail = (e) => {
+    // récupérer les données dans une forme
+    const dataEmail = (e) => {
         setEmail(e.target.value);
     };
-    const changePassword = (e) => {
+    const dataPassword = (e) => {
         setPassword(e.target.value);
     };
 
+    // toggle le message d'erreur
+    const handleClick = () => {
+        if (message === "") {
+            setActive(true);
+            setMessage("")
+        } else {
+            setActive(false)
+            setMessage("")
+        };
+    };
+
+    // envoie des données et ensuite vérifie le data d'user (ou affiche une erreur) et 
+    //connecte si le data est bonne
     const submit = () => {
-        //envoi des données en POST
         let datas = {
             email: email,
             password: password,
         };
-        let request = new Request("/connexion", {
+        let req = new Request("/connexion", {
             method: "POST",
             body: JSON.stringify(datas),
             headers: {
@@ -36,20 +49,15 @@ const Connexion = () => {
             },
         });
 
-        fetch(request)
+        fetch(req)
             .then((response) => response.json())
             .then((response) => {
-                // reponse générée dans le controller (donc si les identifiants de connexion sont ok)
-                // alors on appelle la méthode dispatch
-                // du reducer et ensuite récupérer l'id du client pour le connecter
                 if (response.reponse) {
                     dispatch({
                         type: "CONNECT_USER",
                         id: response.id,
                     });
-                    setMessage("");
-                    navigate("/shop");
-                    // sinon on envoie un message d'erreur (contenu dans la réponse de la requête)
+                    navigate("/");
                 } else {
                     setMessage(response.message);
                 }
@@ -59,25 +67,26 @@ const Connexion = () => {
     return (
         <>
             <section className="container">
-                <h1>Connexion</h1>
-                {/* message à afficher en cas d'erreur*/}
-                <p style={{ color: "red" }}>{message}</p>
-                <form>
-                    <div>
-                        <label htmlFor="email">Votre email</label>
-                        <input type="email" id="email" value={email} onChange={changeEmail} />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Votre mot de passe</label>
-                        <input type="password" id="password" value={password} onChange={changePassword} />
-                    </div>
-                    <button className="btn" type="button" onClick={submit}>
-                        Se connecter
-                    </button>
-                </form>
-                <p>
-                    <a href="/createAccount">Créer un compte</a>
-                </p>
+                <div className="form_section">
+                    <h1 className="form_title">Connexion</h1>
+                    {message !== "" && <p className={active ? "hidden" : "popup"} onClick={handleClick}>{message}</p>}
+                    <form>
+                        <div className="input-box">
+                            <label htmlFor="email">Email</label>
+                            <input type="email" id="email" value={email} onChange={dataEmail} />
+                        </div>
+                        <div className="input-box">
+                            <label htmlFor="password">Mot de passe</label>
+                            <input type="password" id="password" value={password} onChange={dataPassword} />
+                        </div>
+                        <button className="button" type="button" onClick={submit}>
+                            Me connecter
+                        </button>
+                    </form>
+                    <p>
+                        <a className="link" href="/createAccount">Je suis un nouveau ami</a>
+                    </p>
+                </div>
             </section>
         </>
     );

@@ -1,0 +1,75 @@
+.account {
+    display: flex;
+}
+
+.userprofile {
+    width: 40%;
+}
+
+.userprofile form {
+    width: 60%;
+    margin: 2rem auto;
+}
+
+.userprofile label {
+    width: 50%;
+    text-align: left;
+}
+
+.button-box {
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+}
+
+.button-box button {
+    margin-top: 1rem;
+}
+
+.commandes table {
+    width: 100%;
+}
+
+.commandes td {
+    padding: 1rem;
+}
+
+@media screen and (max-width: 980px) and (min-width: 780px) {
+    .userprofile form {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 780px) and (min-width: 630px) {
+    .account {
+        flex-direction: column;
+    }
+
+    .userprofile {
+        width: 100%;
+    }
+
+    .userprofile input {
+        line-height: 1.4em;
+    }
+
+}
+
+@media screen and (max-width: 630px) {
+    .account {
+        flex-direction: column;
+    }
+
+    .userprofile {
+        width: 100%;
+    }
+
+    .userprofile form {
+        width: 90%;
+    }
+
+    .userprofile input {
+        line-height: 1.1em;
+    }
+}

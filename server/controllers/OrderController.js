@@ -5,26 +5,27 @@ export const NewOrder = (req, res) => {
         pool.query(
             `INSERT INTO orders (date, price, product_id, donateur_id)
 			         VALUES(?, ?, ?, ?)`,
-            [new Date(), prod.price, prod.id, req.body.idDonateur],
+            [new Date(), prod.price, prod.id, req.body.donateurId],
             function (error, result, fields) {
                 //res.json({ error: error });
                 res.json(result);
                 //console.log(prod);
-                //console.log(req.body.idDonateur)
+                //console.log(req.body.donateurId)
             },
         );
     }
 };
 
-export const GetOrderById = (req, res) => {
+export const GetOrder = (req, res) => {
     let id = req.params.id;
     console.log(`order: ${id}`);
     pool.query(
-        `SELECT orders.id, orders.product_id, orders.date,
+        `SELECT orders.id, orders.product_id, orders.date, products.name,
         SUM(orders.price) as total
-        FROM orders 
+        FROM orders
+        INNER JOIN products ON orders.product_id = products.id
         WHERE donateur_id = ?
-        GROUP BY id ORDER BY orders.id DESC`,
+        GROUP BY orders.id ORDER BY orders.id ASC`,
         [id],
         function (error, orders, fields) {
             res.json(orders);

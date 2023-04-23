@@ -11,21 +11,21 @@ const Refuge = () => {
     const [message, setMessage] = useState("");
     const [active, setActive] = useState(false);
     const dispatch = useDispatch();
-
     //console.log(refuge);
-
     useEffect(() => {
 
         fetch("/refuge/" + id)
             .then((response) => response.json())
             .then((res) => {
                 setRefuge(res);
-            });
+            })
+            .catch(err => console.error(err));;
         fetch("/products")
             .then((response) => response.json())
             .then((res) => {
                 setProducts(res)
-            });
+            })
+            .catch(err => console.error(err));;
 
     }, [id]);
 
@@ -43,11 +43,11 @@ const Refuge = () => {
         setMessage("L'article est dans le panier !");
     };
 
-    // toggle le message "L'article est dans le panier !"
+    // toggle le message "L'article est dans le panier"
     const handleClick = (e) => {
         if (e.currentTarget.style = "hidden" && message === "") {
             e.currentTarget.style = "popup";
-            setMessage("L'article est dans le panier !")
+            setMessage("L'article est dans le panier")
         } else {
             e.currentTarget.style = "hidden";
             setMessage("")
@@ -56,19 +56,18 @@ const Refuge = () => {
 
     return (
         <>
-
-            <section className="container" data-slider="itc-slider">
-                {message !== "" && <div className="box_popup">
-                    <p className={active ? "hidden" : "popup"}
-                        onClick={handleClick}>{message}</p>
-                </div>}
-                <article>
+            <div className="menu">
+                <a href={"#" + refuge.name}>{refuge.name}</a>
+                <a href="#refuge-shop">Produits</a>
+            </div>
+            <section className="container refuge-desc">
+                <article id={"#" + refuge.name}>
                     <h3>Refuge <span>"{refuge.name}"</span></h3>
                     <div className="info">
                         {refuge.id === 1 && <img className="info_img" src="/img/background/refuge-cat.jpg" alt="chat" />}
                         {refuge.id === 2 && <img className="info_img" src="/img/background/refuge-dog.jpg" alt="dog" />}
-                        {refuge.id === 3 && <img className="info_img" src="/img/background/refuge-poisson.jpg" alt="poisson" />}
-                        {refuge.id === 4 && <img className="info_img" src="/img/background/refuge-rongeur.jpg" alt="rongeur" />}
+                        {refuge.id === 3 && <img className="info_img" src="/img/background/refuge-rongeur.jpg" alt="poisson" />}
+                        {refuge.id === 4 && <img className="info_img" src="/img/background/refuge-poisson.jpg" alt="rongeur" />}
                         <div className="info_text">
                             <p>{refuge.description}</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -80,46 +79,33 @@ const Refuge = () => {
                             </p>
                         </div>
                     </div>
-                    <div className="animals">
-                    </div>
-                    <div className="cards">
-                        {products.map((prod, i) => (
-                            prod.refuge_id === refuge.id && (
-                                <div key={i} className="card">
-                                    <div className="img_card">
-                                        <img src={"/img/" + prod.image} alt={prod.name} />
-                                    </div>
-                                    <p>{prod.name}</p>
-                                    <p>{prod.price}€</p>
-                                    <button onClick={addProduct}
-                                        data-id={i}
-                                        data-name={prod.name}
-                                        data-price={prod.price}
-                                        className="button">
-                                        Ajouter au panier
-                                    </button>
+                </article>
+                <article className="cards" id="refuge-shop">
+                    {message !== "" &&
+                        <div className="box_popup">
+                            <p className={active ? "hidden" : "popup"}
+                                onClick={handleClick}>
+                                {message}
+                            </p>
+                        </div>}
+                    {products.map((prod, i) => (
+                        prod.refuge_id === refuge.id && (
+                            <div key={i} className="card">
+                                <div className="img_card">
+                                    <img src={"/img/" + prod.image} alt={prod.name} />
                                 </div>
-                            ))
-                        )}
-                    </div>
-                    <div className="itc-slider">
-                        <div className="itc-slider__wrapper">
-                            <div className="itc-slider__items">
-                                <div className="itc-slider__item">
-                                    Контент 1 слайда
-                                </div>
-                                <div className="itc-slider__item">
-                                    Контент 2 слайда
-                                </div>
-                                <div className="itc-slider__item">
-                                    Контент 3 слайда
-                                </div>
+                                <p>{prod.name}</p>
+                                <p>{prod.price}€</p>
+                                <button onClick={addProduct}
+                                    data-id={i}
+                                    data-name={prod.name}
+                                    data-price={prod.price}
+                                    className="button">
+                                    Ajouter au panier
+                                </button>
                             </div>
-                        </div>
-                        {/*  <!-- Кнопки для перехода к предыдущему и следующему слайду --> */}
-                        <button className="itc-slider__btn itc-slider__btn_prev"></button>
-                        <button className="itc-slider__btn itc-slider__btn_next"></button>
-                    </div>
+                        ))
+                    )}
                 </article>
             </section>
 

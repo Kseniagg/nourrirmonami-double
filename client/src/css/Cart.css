@@ -1,0 +1,26 @@
+.cart {
+    text-align: left;
+    margin-left: 1rem;
+    margin-right: 1.5rem;
+}
+
+.cart .title {
+    text-align: center;
+}
+
+.link_connect {
+    color: #2E76E4;
+}
+
+.cart td,
+.cart tr {
+    padding: 1rem;
+}
+
+.button_cart {
+    background-color: #2E76E4;
+    color: #fff;
+    cursor: pointer;
+    padding: 0.3rem 0.5rem;
+    border: none;
+}

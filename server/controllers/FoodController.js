@@ -24,7 +24,7 @@ export const GetAllRefuges = (req, res) => {
     );
 };
 
-export const GetRefugeById = (req, res) => {
+export const GetRefuge = (req, res) => {
     let id = req.params.id;
 
     pool.query(`SELECT refuges.name, refuges.id, refuges.description 
@@ -38,8 +38,6 @@ export const GetRefugeById = (req, res) => {
     );
 };
 
-
-
 // récupération de tout les produit (max 5)
 export const GetAllProducts = (req, res) => {
     pool.query(`SELECT products.name, products.description, products.image, products.price, products.id, products.refuge_id FROM products 
@@ -50,7 +48,6 @@ export const GetAllProducts = (req, res) => {
     );
 };
 
-
 // récupération du fond recueillis
 export const FundCollected = (req, res) => {
     pool.query(`SELECT SUM(price) as total from orders`, (error, fond, fields) => {
@@ -60,12 +57,12 @@ export const FundCollected = (req, res) => {
     );
 };
 
-// récupépation du nombre des partenaires
+// récupépation du nombre des donateurs
 export const Partenaires = (req, res) => {
-    pool.query(`SELECT * FROM parrains`,
-        function (error, parrain, fields) {
-            res.json(parrain);
-            //console.log(parrain);
+    pool.query(`SELECT * FROM donateurs`,
+        function (error, donateurs, fields) {
+            res.json(donateurs);
+            //console.log(donateurs);
         },
     );
 };

@@ -1,7 +1,7 @@
 body {
   margin: 0;
-  font-family: Roboto, sans-serif;
-  font-size: 18px;
+  font-family: Roboto, Georgia, sans-serif;
+  font-size: 1.1rem;
   box-sizing: border-box;
 }
 
@@ -12,12 +12,13 @@ body {
   text-align: center;
 }
 
+
 /* **********   HEADER  **************/
 
 header {
   width: 100%;
   background-color: #2E76E4;
-  padding: 2.5em 0;
+  padding: 2rem 0;
 }
 
 .header {
@@ -28,8 +29,14 @@ header {
 
 .logo a {
   color: #fff;
-  font-size: 20px;
+  font-size: 1.3rem;
   text-decoration: none;
+  margin-left: 2rem;
+}
+
+.button-logout {
+  background-color: transparent;
+  border: none;
 }
 
 /* *********** NAV  ***************** */
@@ -41,14 +48,80 @@ header {
 .nav a {
   color: #fff;
   text-decoration: none;
-  margin-right: 17px;
-  margin-left: 18px;
-  padding: 5px 10px;
+  margin-right: 1.1rem;
+  margin-left: 1.2rem;
+  padding: 0.4rem 0.6rem;
 }
 
-.nav a:hover {
+.button-logout i {
+  font-size: 1.2rem;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.3rem;
+}
+
+.nav a:hover,
+.nav i:hover {
   background-color: #fff;
   color: #00748D;
+}
+
+.button-logout {
+  display: inline-block;
+  margin-block-start: 0;
+  margin-block-end: 0;
+}
+
+/* ************  CARDS ****************  */
+
+.cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  margin: 4em auto;
+}
+
+.card {
+  padding-left: 15px;
+  padding-right: 5px;
+  width: 19%;
+  display: flex;
+  flex-direction: column;
+  border: solid 1px;
+  border-radius: 0.4rem;
+  margin: 0 1rem;
+}
+
+.img_card {
+  align-items: center;
+  width: 100%;
+  height: 220px;
+  margin: auto;
+}
+
+.img_card img {
+  width: 90%;
+  margin-top: 10px;
+}
+
+.card p {
+  text-align: left;
+  margin-top: 1.2rem;
+  margin-bottom: 0;
+}
+
+.card a {
+  text-align: left;
+}
+
+.card button {
+  width: 55%;
+  margin: 1rem auto;
+  padding: 0.4rem 0;
+  border: 0;
+  border-radius: 0.3rem;
+  background-color: #2E76E4;
+  color: #fff;
 }
 
 /* **********************    POPUP-MESSAGE   *********************** */
@@ -97,7 +170,113 @@ header {
   }
 }
 
-/* ******** FOOTER  ************ */
+/*************** FORM *************** */
+
+.form_section {
+  margin: 2rem auto;
+  padding: 2.5rem 1rem;
+  width: 25%;
+  border: 1px solid #2f3d52;
+}
+
+.form_section .popup {
+  top: 30%;
+  left: 43%;
+  background-color: rgba(195, 45, 70, 0.2);
+  color: #C32D46;
+  border-color: #C32D46;
+}
+
+.form_title {
+  border-bottom: 0.15rem solid;
+  border-color: #783fcc;
+}
+
+.form_section form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.input-box {
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.input-box label {
+  text-align: left;
+  margin-bottom: 0.2rem;
+}
+
+.input-box {
+  flex-direction: column;
+  margin: 1rem 2rem;
+}
+
+.input-box input {
+  margin: 0.4rem 0;
+  width: 94%;
+  line-height: 1.5rem;
+}
+
+.form_section .button {
+  width: 70%;
+  margin: 0 auto;
+  font-size: 1rem;
+  background-color: #2E76E4;
+  color: #fff;
+  cursor: pointer;
+  padding: 0.3rem 0.5rem;
+  border: 0.1rem solid #2E76E4;
+}
+
+.form_section .button:enabled:hover {
+  background-color: #fff;
+  color: #2E76E4;
+  border: 0.1rem solid #2E76E4;
+  font-weight: bold;
+}
+
+.link {
+  color: #2E76E4;
+}
+
+.link:hover {
+  color: #783fcc;
+}
+
+@media screen and (max-width: 780px) and (min-width: 630px) {
+  .form_section {
+    width: 70%;
+  }
+
+  .input-box input {
+    width: 80%;
+    margin: 1.1rem auto;
+  }
+
+  .input-box label {
+    margin: 0 auto;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .form_section {
+    width: 70%;
+  }
+
+  .input-box input {
+    width: 80%;
+    margin: 0.5rem auto;
+  }
+
+  .input-box label {
+    margin: 0.5rem auto;
+  }
+
+}
+
+/********** FOOTER  **************/
 
 footer {
   width: 100%;
@@ -154,4 +333,65 @@ ul {
 
 .reseaux i:hover {
   color: #2E76E4;
+}
+
+@media screen and (max-width: 980px) and (min-width: 780px) {
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media screen and (max-width: 780px) and (min-width: 630px) {
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    margin-left: 2rem;
+    padding-bottom: 1.2rem;
+  }
+}
+
+@media screen and (max-width: 630px) {
+  .header {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 1rem;
+  }
+
+  .nav {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .logo {
+    padding-bottom: 1.2rem;
+  }
+
+  .footer {
+    flex-direction: column;
+  }
+
+  .footer li {
+    font-size: 0.7rem;
+    width: 100%;
+  }
+
+  .footer li>p {
+    font-size: 1rem;
+  }
+}
+
+.menu a {
+  opacity: 0;
+}
+
+.menu a:focus {
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 1;
+  outline: 3px solid red;
 }

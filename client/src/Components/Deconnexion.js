@@ -1,16 +1,11 @@
-import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
-import "../css/Deconnexion.css";
 
 const Deconnexion = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
-    //const { idDonateur } = useSelector((state) => state);
-    //const [message, setMessage] = useState("");
 
-
+    // appelle une action du reducer et redirige vers le page d'accueil
     const logout = () => {
         dispatch({
             type: "DECONNECT_USER",
@@ -18,14 +13,15 @@ const Deconnexion = () => {
         navigate("/");
     };
 
-
-
     return (
         <>
-            <p className="button-logout" onClick={logout}><i className="fas fa-sign-out-alt"></i></p>
+            <button className="button-logout"
+                onClick={logout}>
+                <i className="fas fa-sign-out-alt">
+                </i>
+            </button>
         </>
     );
 };
-
 
 export default Deconnexion;

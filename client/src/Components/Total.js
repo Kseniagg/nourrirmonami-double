@@ -3,25 +3,27 @@ import { useState, useEffect } from "react";
 const Total = () => {
 
     const [fund, setFund] = useState([]);
-    const [parrain, setParrain] = useState([]);
+    const [donateur, setDonateur] = useState([]);
 
     useEffect(() => {
         fetch("/fund")
             .then((response) => response.json())
             .then((res) => {
                 setFund(res)
-            });
+            })
+            .catch(err => console.error(err));;
 
         fetch("/parrain")
             .then((response) => response.json())
             .then((res) => {
-                setParrain(res)
-            });
+                setDonateur(res)
+            })
+            .catch(err => console.error(err));;
     }, [])
 
     return (
         <>
-            <section className="total-fond">
+            <section className="total-fond" id="total-section">
                 {fund.map((fun, i) => (
                     <div key={i}>
                         <p className="total-figure">{fun.total}</p>
@@ -33,8 +35,8 @@ const Total = () => {
                     <p>animaux sont nourris</p>
                 </div>
                 <div>
-                    <p className="total-figure">{parrain.length}</p>
-                    <p>nombre de partenaires</p>
+                    <p className="total-figure">{donateur.length}</p>
+                    <p>nombre de donateurs</p>
                 </div>
             </section>
         </>

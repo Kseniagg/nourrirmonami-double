@@ -11,8 +11,6 @@ const Shop = () => {
     const [activeMessage, setActiveMessage] = useState(false);
     const dispatch = useDispatch();
 
-
-
     const addProduct = (e) => {
         dispatch({
             type: "ADD_PRODUCT",
@@ -32,12 +30,14 @@ const Shop = () => {
             .then((response) => response.json())
             .then((res) => {
                 setRefuges(res);
-            });
+            })
+            .catch(err => console.error(err));;
         fetch("/products")
             .then((response) => response.json())
             .then((res) => {
                 setProducts(res);
-            });
+            })
+            .catch(err => console.error(err));;
 
     }, [])
     // toggle popup style
@@ -55,24 +55,21 @@ const Shop = () => {
 
     return (
         <>
-            <section className="container general">
+            <section className="container shop">
                 <div className="column-refuges">
                     <h3>Refuge</h3>
                     {refuges.map((ref, i) => (
 
-
                         <div className={`${active === ref.id ? "refuge active" : "refuge"}`}
                             key={i}
                             onClick={() => setActive(ref.id)}>
-                            <p>{ref.name}</p>
+                            <button>{ref.name}</button>
                         </div>))}
                 </div>
-                {/* {ref === active && (
-                                <div className={`${active === ref ? "nav-item active" : "nav-item"}`}> */}
                 {refuges.map((ref, k) => (
                     <div key={k}>
                         {active === ref.id && (
-                            <div className="cards_shop">
+                            <div className="cards">
                                 {message !== "" && <p className={activeMessage ? "hidden" : "popup"} onClick={handleClick}>{message}</p>}
                                 {products.map((prod, i) => (
                                     prod.refuge_id === ref.id && (
@@ -85,7 +82,12 @@ const Shop = () => {
                                             </div>
                                             <p>{prod.name}</p>
                                             <p>{prod.price} €</p>
-                                            <button onClick={addProduct} data-id={i} data-name={prod.name} data-price={prod.price}>Ajouter au panier</button>
+                                            <button onClick={addProduct}
+                                                data-id={i}
+                                                data-name={prod.name}
+                                                data-price={prod.price}>
+                                                Ajouter au panier
+                                            </button>
 
                                         </div>
                                     )))}
@@ -93,13 +95,8 @@ const Shop = () => {
                             </div>
                         )}
                     </div>
-
-
-
                 ))}
             </section>
-
-
         </>
     );
 };

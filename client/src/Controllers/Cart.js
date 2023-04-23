@@ -1,110 +1,97 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import "../css/Cart.css";
 
 const Cart = () => {
+
     const [message, setMessage] = useState("");
-    //les hooks : useSelector permet de lire dans le state global
-    const { products, idDonateur, totalPrice } = useSelector((state) => state);
-
-    //useDispatch permettra d'appeler une action du reducer afin d'écrire dans le state global
     const dispatch = useDispatch();
-    //useNavigate permettra d'effectuer une redirection
-    const navigate = useNavigate();
+    //récupére des données dans le state global
+    const { products, donateurId, totalPrice } = useSelector((state) => state);
 
-    /* const addQty = (e) => {
-        dispatch({
-            type: "ADD_QUANTITE",
-            prodId: e.currentTarget.dataset.id,
-        });
-    } */
-
+    // appelle une action du reducer pour supprimer l'article
     const deleteProduct = (e) => {
-
         dispatch({
             type: "DELETE_PRODUCT",
             prodId: e.currentTarget.dataset.id,
         });
-        setMessage("Vous avez bien supprimé l'article !");
     };
 
+    // envoie une commande dans une bdd si l'user est connecté
     const validOrder = (e) => {
-        //vérifier si l'utilisateur est connecté d'abord
-        /* if (idDonateur === "" || idDonateur == null) {
-            //s'il n'est pas connecté , on le redirige vers la page de connexion
-            navigate("/connexion");
-        } else { */
-        //envoi de la commande en base de données
-        //envoi des données en POST
-        let data = {
-            idDonateur: idDonateur,
-            /*  products: {
-                 id: e.currentTarget.dataset.id,
-                 price: e.currentTarget.dataset.products.price,
-             } */
-            products: products,
+        if (donateurId === "" || donateurId == null) {
+            setMessage("Vous n'etes pas connecté");
+        } else {
+            let data = {
+                donateurId: donateurId,
+                products: products,
+            };
 
-        };
-
-        let req = new Request("/addOrder",
-            {
-                method: "POST",
-                body: JSON.stringify(data),
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }
-            });
-
-        fetch(req)
-            .then((response) => response.text())
-            .then((response) => {
-                //on vide le panier au moment de l'envoi de la commande
-                /* if (response.error === null) { */
-                dispatch({
-                    type: "DELETE_ALL",
+            let req = new Request("/addOrder",
+                {
+                    method: "POST",
+                    body: JSON.stringify(data),
+                    headers: {
+                        Accept: "application/json",
+                        "Content-Type": "application/json",
+                    }
                 });
-                setMessage("Vous avez validé la commande")
-                //navigate("/shop");
-                /*  } else {
-                     console.log(response.error);
-                 } */
-            });
-        //};
+
+            fetch(req)
+                .then((response) => response.text())
+                .then((response) => {
+                    dispatch({
+                        type: "DELETE_ALL",
+                    });
+                    setMessage("Votre commande est validé")
+                })
+                .catch(err => console.error(err));
+        }
     };
+
 
     return (
         <>
-            <section className="container">
-                <h1>Votre panier</h1>
-                {products.map((prod, i) => (
-                    <article className="panier" key={i}>
-                        {/* <img src={"/img/" + prod.image} alt={prod.name} /> */}
+            <section className="container cart">
+                <h1 className="title">Votre panier</h1>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>Prix</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {products.map((prod, i) => {
+                            return (
+                                <tr key={i}>
+                                    <td>{prod.name}</td>
+                                    <td>{prod.price} €</td>
+                                    <td>
+                                        <button data-id={i} onClick={deleteProduct}>Delete</button>
+                                    </td>
+                                </tr>
+                            );
+                        })}
+                    </tbody>
+                </table>
 
-                        <h3>{prod.name}</h3>
-                        <p>{prod.price}€</p>
-                        {/*  <button data-id={i} onClick={addQty}>Add</button>
- */}
-                        <button data-id={i} onClick={deleteProduct}>Delete</button>
+                {/*  <button data-id={i} onClick={addQty}>Add</button>*/}
 
-
-
-                    </article>
-                ))}
-                <p>Total: {totalPrice} €</p>
-
+                <p><strong>Total: </strong>{totalPrice} €</p>
                 {products.length !== 0 ? (
                     <p>
-
-                        <button className="btn" onClick={validOrder}>
+                        <button className="button_cart"
+                            onClick={validOrder}>
                             Valider la commande
                         </button>
-
                     </p>
                 ) : (
-                    <p>Votre panier est vide</p>
+                    <div>
+                        <p>Votre panier est vide</p>
+                    </div>
                 )}
-                {/* si il y a un message alors on l'affiche*/}
                 {message !== "" && <p>{message}</p>}
             </section>
         </>

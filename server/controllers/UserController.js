@@ -3,16 +3,13 @@ import bcrypt from "bcrypt";
 
 const saltRounds = 10;
 
-// pour CreateAccount
-export const UserRegister = (req, res) => {
+// pour Create Account
+export const DonateurRegister = (req, res) => {
     bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
         pool.query(
-            "INSERT INTO donateurs (nom, prenom, email, password) VALUES (?, ?, ?, ?)",
-            [req.body.nom, req.body.prenom, req.body.email, hash],
+            "INSERT INTO donateurs (lastName, firstName, email, password) VALUES (?, ?, ?, ?)",
+            [req.body.lastName, req.body.firstName, req.body.email, hash],
             function (error, result, fields) {
-                if (req.body.length > 0) {
-                    res.status(400).send({ message: "У нас не может не быть контента" });
-                }
                 res.json(result);
                 //console.log(error);
             },
@@ -21,7 +18,7 @@ export const UserRegister = (req, res) => {
 };
 
 
-export const UserLogin = (req, res) => {
+export const DonateurLogin = (req, res) => {
     pool.query(
         "SELECT * FROM donateurs WHERE email = ?",
         [req.body.email],
@@ -51,7 +48,7 @@ export const UserLogin = (req, res) => {
     );
 };
 
-export const GetUserById = (req, res) => {
+export const GetDonateur = (req, res) => {
     let id = req.params.id;
     //console.log(id);
     pool.query(
@@ -63,11 +60,11 @@ export const GetUserById = (req, res) => {
     );
 };
 
-export const UpdateUser = (req, res) => {
+export const UpdateDonateur = (req, res) => {
     bcrypt.hash(req.body.password, saltRounds, function (err, hash) {
         pool.query(
-            "UPDATE donateurs SET nom = ?, prenom = ?, email = ?, password = ? WHERE id = ?",
-            [req.body.nom, req.body.prenom, req.body.email, hash, req.body.id],
+            "UPDATE donateurs SET lastName = ?, firstName = ?, email = ?, password = ? WHERE id = ?",
+            [req.body.lastName, req.body.firstName, req.body.email, hash, req.body.id],
             function (error, result, fields) {
                 res.json(result);
             },
@@ -75,10 +72,10 @@ export const UpdateUser = (req, res) => {
     });
 };
 
-export const DeleteUser = (req, res) => {
+export const DeleteDonateur = (req, res) => {
     pool.query(
         "DELETE FROM donateurs WHERE id = ? LIMIT 1",
-        [req.body.idDonateur],
+        [req.body.donateurId],
         function (error, result, fields) {
             res.json(result);
         }

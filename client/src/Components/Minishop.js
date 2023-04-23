@@ -13,7 +13,8 @@ const Minishop = () => {
             .then((response) => response.json())
             .then((res) => {
                 setProducts(res)
-            });
+            })
+            .catch(err => console.error(err));
     }, [])
 
     const addProduct = (e) => {
@@ -26,11 +27,11 @@ const Minishop = () => {
                 price: e.currentTarget.dataset.price,
             }
         });
-        setMessage("Vous avez ajouté l'article !");
+        setMessage("L'article est dans le panier");
     };
 
+    // toggle pour le message
     const handleClick = (e) => {
-        // toggle
         if (e.currentTarget.style = "hidden" && message === "") {
             e.currentTarget.style = "popup";
             setMessage("Vous avez ajouté l'article !")
@@ -42,7 +43,7 @@ const Minishop = () => {
 
     return (
         <>
-            <article className="cards">
+            <section className="cards" id="minishop-section">
                 {message !== "" && <p className={active ? "hidden" : "popup"} onClick={handleClick}>{message}</p>}
                 {products.map((prod, i) => (
                     <div className="card" key={i}>
@@ -60,7 +61,7 @@ const Minishop = () => {
                         </button>
                     </div>
                 ))}
-            </article >
+            </section >
         </>
     );
 

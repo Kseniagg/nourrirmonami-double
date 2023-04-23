@@ -1,25 +1,28 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "../css/CreateAccount.css"
 
 const CreateAccount = () => {
-    const [nom, setNom] = useState("");
-    const [prenom, setPrenom] = useState("");
+
+    const [lastName, setLastName] = useState("");
+    const [firstName, setFirstName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
 
-    const isSubmittable = () => (email ? true : false);
+    //desactive la création du compte avec un email ou un password vides
+    const isSubmittable = () => (email && password ? true : false);
 
     const navigate = useNavigate();
 
     const handleChange = (e) => {
         switch (e.target.name) {
             //console.log(e.target.id);
-            case 'nom':
-                setNom(e.target.value);
+            case 'lastName':
+                setLastName(e.target.value);
                 break;
-            case 'prenom':
-                setPrenom(e.target.value);
+            case 'firstName':
+                setFirstName(e.target.value);
                 break;
             case 'email':
                 setEmail(e.target.value);
@@ -33,8 +36,8 @@ const CreateAccount = () => {
 
     const submit = () => {
         let datas = {
-            nom: nom,
-            prenom: prenom,
+            lastName: lastName,
+            firstName: firstName,
             email: email,
             password: password
         };
@@ -53,8 +56,8 @@ const CreateAccount = () => {
             .then((response) => response.json())
             .then((response) => {
                 if (response.message === "") {
-                    setNom("");
-                    setPrenom("");
+                    setLastName("");
+                    setFirstName("");
                     setEmail("");
                     setPassword("");
                     navigate("/connexion");
@@ -62,38 +65,42 @@ const CreateAccount = () => {
                     setMessage(response.message);
                 }
             })
+            .catch(err => console.error(err));
     }
 
 
     return (
         <>
-            <section className="container">
-                <h1>Créer un compte</h1>
-                {message !== "" && <p>{message}</p>}
-                <form id="cr">
-                    <div>
-                        <label htmlFor="nom">Votre nom</label>
-                        <input type="text" name="nom" value={nom} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="prenom">Votre prénom</label>
-                        <input type="text" name="prenom" value={prenom} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="email">Votre email</label>
-                        <input type="email" name="email" value={email} onChange={handleChange} />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Votre mot de passe</label>
-                        <input type="password" name="password" value={password} onChange={handleChange} />
-                    </div>
-                    <button className="btn" disabled={!isSubmittable()} type="button" onClick={submit}>
-                        Créer un compte
-                    </button>
-                </form>
-                <p>
-                    <a href="/connexion">J'ai déjà un compte</a>
-                </p>
+            <section className="container new-account">
+                <div className="form_section">
+                    <h1 className="form_title">Créer un compte</h1>
+                    {message !== "" && <p>{message}</p>}
+                    <form>
+                        <div className="input-box">
+                            <label htmlFor="lastName">Nom</label>
+                            <input type="text" name="lastName" value={lastName} onChange={handleChange} />
+                        </div>
+                        <div className="input-box">
+                            <label htmlFor="firstName">Prénom</label>
+                            <input type="text" name="firstName" value={firstName} onChange={handleChange} />
+                        </div>
+                        <div className="input-box">
+                            <label htmlFor="email">Email</label>
+                            <input type="email" name="email" value={email} onChange={handleChange} pattern=".+@globex\.com" required />
+                        </div>
+                        <div className="input-box">
+                            <label htmlFor="password">Mot de passe</label>
+                            <input type="password" name="password" value={password} onChange={handleChange} inputMode="numeric" minLength="4"
+                                maxLength="8" required />
+                        </div>
+                        <button className="button" disabled={!isSubmittable()} type="button" onClick={submit} >
+                            Créer un compte
+                        </button>
+                    </form>
+                    <p>
+                        <a className="link" href="/connexion">J'ai déjà un compte</a>
+                    </p>
+                </div>
             </section>
         </>
     );

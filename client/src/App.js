@@ -8,8 +8,8 @@ import Connexion from "./Controllers/Connexion";
 import CreateAccount from "./Controllers/CreateAccount";
 import Cart from "./Controllers/Cart";
 import Header from "./Components/Header";
-import Deconnexion from "./Controllers/Deconnexion";
-import Dashboard from "./Controllers/Dashboard";
+import Deconnexion from "./Components/Deconnexion";
+import AccountInformation from "./Controllers/AccountInformation";
 import Footer from "./Components/Footer";
 
 function App() {
@@ -26,7 +26,7 @@ function App() {
           <Route path="/createAccount" element={<CreateAccount />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/deconnexion" element={<Deconnexion />} />
-          <Route path="/moncompte" element={<Dashboard />} />
+          <Route path="/moncompte" element={<AccountInformation />} />
         </Routes>
         <Footer />
       </BrowserRouter>

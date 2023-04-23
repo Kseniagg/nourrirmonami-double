@@ -1,0 +1,25 @@
+.new-account .form_section {
+    width: 35%;
+}
+
+.new-account input {
+    line-height: 1.3em;
+}
+
+.button:disabled {
+    background-color: #A59FA0;
+    color: #555;
+    border-color: #555;
+    cursor: auto;
+}
+
+@media screen and (max-width: 630px) {
+    .new-account .form_section {
+        width: 60%;
+    }
+
+    .new-account input {
+        width: 100%;
+        line-height: 1.7em;
+    }
+}
