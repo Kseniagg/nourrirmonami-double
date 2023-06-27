@@ -65,7 +65,6 @@ const CreateAccount = () => {
                     setMessage(response.message);
                 }
             })
-            .catch(err => console.error(err));
     }
 
 

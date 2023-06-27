@@ -53,7 +53,7 @@ const Cart = () => {
     return (
         <>
             <section className="container cart">
-                <h1 className="title">Votre panier</h1>
+                <h1 className="title">Panier</h1>
                 <table>
                     <thead>
                         <tr>
