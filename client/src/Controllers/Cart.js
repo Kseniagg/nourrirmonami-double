@@ -65,11 +65,11 @@ const Cart = () => {
                     <tbody>
                         {products.map((prod, i) => {
                             return (
-                                <tr key={i}>
+                                <tr key={i} className="article-item">
                                     <td>{prod.name}</td>
                                     <td>{prod.price} €</td>
                                     <td>
-                                        <button data-id={i} onClick={deleteProduct}>Delete</button>
+                                        <button data-id={i} onClick={deleteProduct}><i class="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             );

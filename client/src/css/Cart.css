@@ -1,7 +1,9 @@
 .cart {
+    min-height: 70vh;
     text-align: left;
-    margin-left: 1rem;
+    margin-left: 8rem;
     margin-right: 1.5rem;
+    margin-bottom: 2rem;
 }
 
 .cart .title {
@@ -12,8 +14,7 @@
     color: #2E76E4;
 }
 
-.cart td,
-.cart tr {
+.cart td {
     padding: 1rem;
 }
 
@@ -21,6 +22,33 @@
     background-color: #2E76E4;
     color: #fff;
     cursor: pointer;
-    padding: 0.3rem 0.5rem;
+    padding: 0.5rem;
+    border: 3px solid #2E76E4;
+    margin: 1rem auto;
+    border-radius: 0.4rem;
+}
+
+.button_cart:hover {
+    color: #2E76E4;
+    background-color: #fff;
+    border: 3px solid #2E76E4;
+}
+
+.article-item {
+    background: #f7f7f7;
+    box-shadow: 0 1px 2px #0000002e
+}
+
+table {
+    -webkit-border-horizontal-spacing: 0;
+    -webkit-border-vertical-spacing: 2rem;
+}
+
+td button {
     border: none;
+    cursor: pointer;
+}
+
+.fa-trash {
+    color: #667995;
 }

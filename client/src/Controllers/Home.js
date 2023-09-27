@@ -14,7 +14,7 @@ const Home = () => {
             <section className="container main_section" id="main-section">
                 <article className="main">
                     <div className="main_text">
-                        <p>nouveaté</p>
+                        <p>nouveauté</p>
                         <p>Préparez votre venue</p>
                         <p>(accès, horaires, services...)</p>
                     </div>

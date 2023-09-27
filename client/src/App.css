@@ -45,7 +45,7 @@ header {
   display: inline-block;
 }
 
-.nav a {
+.nav .link {
   color: #fff;
   text-decoration: none;
   margin-right: 1.1rem;
@@ -53,7 +53,11 @@ header {
   padding: 0.4rem 0.6rem;
 }
 
-.button-logout i {
+.nav a {
+  margin-right: 1.1rem;
+}
+
+.nav .fas {
   font-size: 1.2rem;
   color: #fff;
   cursor: pointer;
@@ -122,6 +126,31 @@ header {
   border-radius: 0.3rem;
   background-color: #2E76E4;
   color: #fff;
+  cursor: pointer;
+}
+
+.fa-shopping-cart {
+  position: relative;
+}
+
+.fa-shopping-cart span {
+  padding: 1px 1px;
+  font-weight: 700;
+  box-shadow: 0 0 0 2px #fff;
+  top: -1px;
+  left: 21px;
+  background: linear-gradient(0deg, #fc8507 0%, #ffa218 100%);
+  border-radius: 9px;
+  align-items: center;
+  color: #fff;
+  display: inline-flex;
+  font-size: 13px;
+  height: 10px;
+  justify-content: center;
+  line-height: 13px;
+  min-width: 12px;
+  position: absolute;
+  text-align: center;
 }
 
 /* **********************    POPUP-MESSAGE   *********************** */
@@ -366,6 +395,12 @@ ul {
     flex-wrap: wrap;
   }
 
+  .nav .icons {
+    margin-left: 14rem;
+    position: absolute;
+    top: 32px;
+  }
+
   .logo {
     padding-bottom: 1.2rem;
   }
@@ -386,6 +421,9 @@ ul {
 
 .menu a {
   opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .menu a:focus {
