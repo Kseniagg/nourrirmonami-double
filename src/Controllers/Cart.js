@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import "../css/Cart.css";
 
 const Cart = () => {
@@ -26,49 +26,15 @@ const Cart = () => {
         if (!isLoggedIn) {
             setMessage("Vous n'etes pas connecté");
         } else {
-            /* let data = {
-                donateurId: donateurId,
-                products: products,
-            }; */
-
             //adds an order in localStorage
             localStorage.setItem("order", JSON.stringify(products));
-
-
 
             dispatch({
                 type: "DELETE_ALL",
             });
             setMessage("Votre commande est validé");
-
-
-
-            /* let req = new Request("/addOrder",
-                {
-                    method: "POST",
-                    body: JSON.stringify(data),
-                    headers: {
-                        Accept: "application/json",
-                        "Content-Type": "application/json",
-                    }
-                });
- 
-            fetch(req)
-                .then((response) => response.text())
-                .then((response) => {
-                    dispatch({
-                        type: "DELETE_ALL",
-                    });
-                    setMessage("Votre commande est validé")
-                })
-                .catch(err => console.error(err)); */
         }
-
-
     }
-
-
-
 
     return (
         <>

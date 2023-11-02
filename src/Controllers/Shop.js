@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import refugesFile from "../utils/refuges.js";
 import productsFile from "../utils/products";
@@ -25,24 +25,6 @@ const Shop = () => {
         });
         setMessage("Vous avez ajouté l'article !");
     };
-
-    /* useEffect(() => {
-
-        fetch("/refuges")
-            .then((response) => response.json())
-            .then((res) => {
-                setRefuges(res);
-            })
-            .catch(err => console.error(err));;
-        fetch("/products")
-            .then((response) => response.json())
-            .then((res) => {
-                setProducts(res);
-            })
-            .catch(err => console.error(err));;
-
-    }, []) */
-
 
     // toggle popup style
     const handleClick = (e) => {

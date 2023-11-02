@@ -1,19 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import refugesFile from "../utils/refuges.js";
 import "../css/Refuges.css";
 
 const Refuges = () => {
 
     const [refuges, setRefuges] = useState(refugesFile);
-
-    /*  useEffect(() => {
-         fetch("/refuges")
-             .then((response) => response.json())
-             .then((res) => {
-                 setRefuges(res)
-             })
-             .catch(err => console.error(err));;
-     }, []) */
 
     return (
         <>
@@ -28,8 +19,6 @@ const Refuges = () => {
                         <h2>{ref.name}</h2>
                         <a href={"/refuge/" + ref.id}>En savoir plus</a>
                     </article>
-
-
                 ))}
             </section>
         </>

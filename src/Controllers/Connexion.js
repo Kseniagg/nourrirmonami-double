@@ -35,37 +35,7 @@ const Connexion = () => {
         };
     };
 
-    // envoie des données et ensuite vérifie le data d'user (ou affiche une erreur) et
-    //connecte si le data est bonne
-    /* const submit = () => {
-        let datas = {
-            email: email,
-            password: password,
-        };
-        let req = new Request("/connexion", {
-            method: "POST",
-            body: JSON.stringify(datas),
-            headers: {
-                Accept: "application/json",
-                "Content-Type": "application/json",
-            },
-        });
 
-        fetch(req)
-            .then((response) => response.json())
-            .then((response) => {
-                if (response.reponse) {
-                    dispatch({
-                        type: "CONNECT_USER",
-                        id: response.id,
-                    });
-                    navigate("/");
-                } else {
-                    setMessage(response.message);
-                }
-            });
-    
-*/
     const submit = () => {
         const savedUser = JSON.parse(localStorage.getItem("user"))
         const savedUserName = savedUser.email;

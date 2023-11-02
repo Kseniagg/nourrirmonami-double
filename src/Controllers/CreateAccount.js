@@ -44,32 +44,6 @@ const CreateAccount = () => {
 
         localStorage.setItem("user", JSON.stringify(datas));
         navigate("/connexion");
-
-
-
-        /*  let req = new Request("/createAccount",
-             {
-                 method: "POST",
-                 body: JSON.stringify(datas),
-                 headers: {
-                     Accept: "application/json",
-                     "Content-Type": "application/json",
-                 }
-             });
- 
-         fetch(req)
-             .then((response) => response.json())
-             .then((response) => {
-                 if (response.message === "") {
-                     setLastName("");
-                     setFirstName("");
-                     setEmail("");
-                     setPassword("");
-                     navigate("/connexion");
-                 } else {
-                     setMessage(response.message);
-                 }
-             }) */
     }
 
     return (

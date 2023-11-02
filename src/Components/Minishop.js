@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useDispatch } from "react-redux";
 import productsFile from "../utils/products";
 
@@ -22,17 +22,6 @@ const Minishop = () => {
 
     const indicesAleatoires = generateRandomIndices(4, products.length);
     const productsAleatoires = indicesAleatoires.map((index) => products[index]);
-
-    console.log(productsAleatoires);
-
-    /* useEffect(() => {
-        fetch("/randomProduct")
-            .then((response) => response.json())
-            .then((res) => {
-                setProducts(res)
-            })
-            .catch(err => console.error(err));
-    }, []) */
 
     const addProduct = (e) => {
         dispatch({
