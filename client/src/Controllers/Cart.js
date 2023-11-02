@@ -7,8 +7,10 @@ const Cart = () => {
     const [message, setMessage] = useState("");
     const dispatch = useDispatch();
     //récupére des données dans le state global
-    const { products, donateurId, totalPrice } = useSelector((state) => state);
+    const { products, isLoggedIn, totalPrice } = useSelector((state) => state);
 
+    //const isLogged = localStorage.getItem("isLoggedIn");
+    console.log(isLoggedIn);
     // appelle une action du reducer pour supprimer l'article
     const deleteProduct = (e) => {
         dispatch({
@@ -17,17 +19,31 @@ const Cart = () => {
         });
     };
 
+
     // envoie une commande dans une bdd si l'user est connecté
     const validOrder = (e) => {
-        if (donateurId === "" || donateurId == null) {
+        /*  if (donateurId === "" || donateurId == null) { */
+        if (!isLoggedIn) {
             setMessage("Vous n'etes pas connecté");
         } else {
-            let data = {
+            /* let data = {
                 donateurId: donateurId,
                 products: products,
-            };
+            }; */
 
-            let req = new Request("/addOrder",
+            //adds an order in localStorage
+            localStorage.setItem("order", JSON.stringify(products));
+
+
+
+            dispatch({
+                type: "DELETE_ALL",
+            });
+            setMessage("Votre commande est validé");
+
+
+
+            /* let req = new Request("/addOrder",
                 {
                     method: "POST",
                     body: JSON.stringify(data),
@@ -36,7 +52,7 @@ const Cart = () => {
                         "Content-Type": "application/json",
                     }
                 });
-
+ 
             fetch(req)
                 .then((response) => response.text())
                 .then((response) => {
@@ -45,9 +61,13 @@ const Cart = () => {
                     });
                     setMessage("Votre commande est validé")
                 })
-                .catch(err => console.error(err));
+                .catch(err => console.error(err)); */
         }
-    };
+
+
+    }
+
+
 
 
     return (
@@ -69,7 +89,7 @@ const Cart = () => {
                                     <td>{prod.name}</td>
                                     <td>{prod.price} €</td>
                                     <td>
-                                        <button data-id={i} onClick={deleteProduct}><i class="fas fa-trash"></i></button>
+                                        <button data-id={i} onClick={deleteProduct}><i className="fas fa-trash"></i></button>
                                     </td>
                                 </tr>
                             );

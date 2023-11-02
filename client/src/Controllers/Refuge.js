@@ -1,18 +1,22 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import productsFile from "../utils/products";
+import refuges from "../utils/refuges";
 import "../css/Refuge.css";
 
 const Refuge = () => {
 
     const { id } = useParams();
-    const [refuge, setRefuge] = useState({});
-    const [products, setProducts] = useState([]);
+    const refuge = refuges[id];
+    //const [refuge, setRefuge] = useState({});
+    const [products, setProducts] = useState(productsFile);
+    //const [products, setProducts] = useState([]);
     const [message, setMessage] = useState("");
     const [active, setActive] = useState(false);
     const dispatch = useDispatch();
     //console.log(refuge);
-    useEffect(() => {
+    /* useEffect(() => {
 
         fetch("/refuge/" + id)
             .then((response) => response.json())
@@ -27,7 +31,7 @@ const Refuge = () => {
             })
             .catch(err => console.error(err));;
 
-    }, [id]);
+    }, [id]); */
 
     // ajoute un produit dans le panier
     const addProduct = (e) => {

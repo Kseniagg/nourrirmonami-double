@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import refugesFile from "../utils/refuges.js";
+import productsFile from "../utils/products";
 import "../css/Shop.css";
 
 
 const Shop = () => {
-    const [refuges, setRefuges] = useState([]);
-    const [products, setProducts] = useState([]);
+    const [refuges, setRefuges] = useState(refugesFile);
+    const [products, setProducts] = useState(productsFile);
     const [message, setMessage] = useState("");
     const [active, setActive] = useState(1);
     const [activeMessage, setActiveMessage] = useState(false);
@@ -24,7 +26,7 @@ const Shop = () => {
         setMessage("Vous avez ajouté l'article !");
     };
 
-    useEffect(() => {
+    /* useEffect(() => {
 
         fetch("/refuges")
             .then((response) => response.json())
@@ -39,7 +41,9 @@ const Shop = () => {
             })
             .catch(err => console.error(err));;
 
-    }, [])
+    }, []) */
+
+
     // toggle popup style
     const handleClick = (e) => {
 

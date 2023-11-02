@@ -7,6 +7,7 @@ const Connexion = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [message, setMessage] = useState("");
+
     // des variables pour des style css
     const [active, setActive] = useState(false);
 
@@ -22,9 +23,10 @@ const Connexion = () => {
         setPassword(e.target.value);
     };
 
+
     // toggle le message d'erreur
     const handleClick = () => {
-        if (message === "") {
+        if (setMessage === "") {
             setActive(true);
             setMessage("")
         } else {
@@ -33,9 +35,9 @@ const Connexion = () => {
         };
     };
 
-    // envoie des données et ensuite vérifie le data d'user (ou affiche une erreur) et 
+    // envoie des données et ensuite vérifie le data d'user (ou affiche une erreur) et
     //connecte si le data est bonne
-    const submit = () => {
+    /* const submit = () => {
         let datas = {
             email: email,
             password: password,
@@ -62,7 +64,24 @@ const Connexion = () => {
                     setMessage(response.message);
                 }
             });
+    
+*/
+    const submit = () => {
+        const savedUser = JSON.parse(localStorage.getItem("user"))
+        const savedUserName = savedUser.email;
+        const savedUserPassword = savedUser.password;
+
+        if (email === savedUserName && password === savedUserPassword) {
+            dispatch({
+                type: "CONNECT_USER",
+            });
+            navigate("/");
+        } else {
+            setMessage("Identifiants incorrects. Veuillez réessayer.");
+        }
     };
+
+
 
     return (
         <>
@@ -90,5 +109,5 @@ const Connexion = () => {
             </section>
         </>
     );
-};
+}
 export default Connexion;

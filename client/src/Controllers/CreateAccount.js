@@ -42,31 +42,35 @@ const CreateAccount = () => {
             password: password
         };
 
-        let req = new Request("/createAccount",
-            {
-                method: "POST",
-                body: JSON.stringify(datas),
-                headers: {
-                    Accept: "application/json",
-                    "Content-Type": "application/json",
-                }
-            });
+        localStorage.setItem("user", JSON.stringify(datas));
+        navigate("/connexion");
 
-        fetch(req)
-            .then((response) => response.json())
-            .then((response) => {
-                if (response.message === "") {
-                    setLastName("");
-                    setFirstName("");
-                    setEmail("");
-                    setPassword("");
-                    navigate("/connexion");
-                } else {
-                    setMessage(response.message);
-                }
-            })
+
+
+        /*  let req = new Request("/createAccount",
+             {
+                 method: "POST",
+                 body: JSON.stringify(datas),
+                 headers: {
+                     Accept: "application/json",
+                     "Content-Type": "application/json",
+                 }
+             });
+ 
+         fetch(req)
+             .then((response) => response.json())
+             .then((response) => {
+                 if (response.message === "") {
+                     setLastName("");
+                     setFirstName("");
+                     setEmail("");
+                     setPassword("");
+                     navigate("/connexion");
+                 } else {
+                     setMessage(response.message);
+                 }
+             }) */
     }
-
 
     return (
         <>

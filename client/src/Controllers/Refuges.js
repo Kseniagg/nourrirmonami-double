@@ -1,18 +1,19 @@
 import { useState, useEffect } from "react";
+import refugesFile from "../utils/refuges.js";
 import "../css/Refuges.css";
 
 const Refuges = () => {
 
-    const [refuges, setRefuges] = useState([]);
+    const [refuges, setRefuges] = useState(refugesFile);
 
-    useEffect(() => {
-        fetch("/refuges")
-            .then((response) => response.json())
-            .then((res) => {
-                setRefuges(res)
-            })
-            .catch(err => console.error(err));;
-    }, [])
+    /*  useEffect(() => {
+         fetch("/refuges")
+             .then((response) => response.json())
+             .then((res) => {
+                 setRefuges(res)
+             })
+             .catch(err => console.error(err));;
+     }, []) */
 
     return (
         <>

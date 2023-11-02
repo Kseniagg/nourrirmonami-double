@@ -5,23 +5,36 @@ import UserProfile from "../Components/UserProfile";
 import "../css/AccountInfo.css";
 
 const AccountInformation = () => {
-    const [orders, setOrders] = useState([]);
+    //get an order from localStorage
+    const [orders, setOrders] = useState(JSON.parse(localStorage.getItem("order")));
+    // const [orders, setOrders] = useState([]);
     //console.log(orders);
     const navigate = useNavigate();
-    const { donateurId } = useSelector((state) => state);
+    const { isLoggedIn } = useSelector((state) => state);
+    console.log(orders)
 
+
+    // check if user is logged in
     useEffect(() => {
-        if (donateurId === null) {
+        if (!isLoggedIn) {
             navigate("/connexion");
-        } else {
-            fetch("/getOrders/" + donateurId)
-                .then((response) => response.json())
-                .then((response) => {
-                    setOrders(response);
-                    console.log(response);
-                });
         }
-    }, [donateurId, navigate]);
+    },
+        [isLoggedIn, navigate]);
+
+    /*   useEffect(() => {
+          if (donateurId === null) {
+              navigate("/connexion");
+          } else {
+              console.log(orders);
+              /* fetch("/getOrders/" + donateurId)
+                  .then((response) => response.json())
+                  .then((response) => {
+                      setOrders(response);
+                      console.log(response);
+                  }); */
+    /*    }
+    }, [donateurId, navigate]); */
 
     return (
 
@@ -45,7 +58,7 @@ const AccountInformation = () => {
                             {orders.map((order, i) => (
                                 <tr key={i}>
                                     <td>{order.name}</td>
-                                    <td>{order.total} €</td>
+                                    <td>{order.price} €</td>
                                     <td>{new Date(order.date).toLocaleString()}</td>
                                 </tr>
                             ))}

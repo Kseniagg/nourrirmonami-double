@@ -15,7 +15,8 @@ if (sessionStorage.getItem("basket")) {
     stateInit = {
         totalPrice: 0,
         products: [],
-        donateurId: null,
+        //donateurId: null,
+        isLoggedIn: false,
     };
 }
 
@@ -58,11 +59,13 @@ const reducer = (state = stateInit, action = {}) => {
             return {
                 ...state,
                 donateurId: action.id,
+                isLoggedIn: true,
             };
         case DECONNECT_USER:
             return {
                 ...state,
                 donateurId: null,
+                isLoggedIn: false,
             };
         default:
             return state;

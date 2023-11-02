@@ -1,21 +1,38 @@
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
+import productsFile from "../utils/products";
 
 const Minishop = () => {
 
-    const [products, setProducts] = useState([]);
+    const [products, setProducts] = useState(productsFile);
     const [message, setMessage] = useState("");
     const [active, setActive] = useState(false);
     const dispatch = useDispatch();
 
-    useEffect(() => {
+    function generateRandomIndices(n, maxIndex) {
+        const indices = [];
+        while (indices.length < n) {
+            const randomIndex = Math.floor(Math.random() * maxIndex);
+            if (!indices.includes(randomIndex)) {
+                indices.push(randomIndex);
+            }
+        }
+        return indices;
+    }
+
+    const indicesAleatoires = generateRandomIndices(4, products.length);
+    const productsAleatoires = indicesAleatoires.map((index) => products[index]);
+
+    console.log(productsAleatoires);
+
+    /* useEffect(() => {
         fetch("/randomProduct")
             .then((response) => response.json())
             .then((res) => {
                 setProducts(res)
             })
             .catch(err => console.error(err));
-    }, [])
+    }, []) */
 
     const addProduct = (e) => {
         dispatch({
@@ -45,7 +62,7 @@ const Minishop = () => {
         <>
             <section className="cards" id="minishop-section">
                 {message !== "" && <p className={active ? "hidden" : "popup"} onClick={handleClick}>{message}</p>}
-                {products.map((prod, i) => (
+                {productsAleatoires.map((prod, i) => (
                     <div className="card" key={i}>
                         <div className="img_card">
                             <img className="img" src={"/img/" + prod.image} alt={prod.name} />
