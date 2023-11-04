@@ -5,19 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 const UserProfile = () => {
 
+    // get user data in localStorage
     const savedUser = JSON.parse(localStorage.getItem("user"))
-    const savedUserEmail = savedUser.email;
-    const savedUserPassword = savedUser.password;
-    const savedUserLastName = savedUser.lastName;
-    const savedUserFirstName = savedUser.firstName;
 
-    const [email, setEmail] = useState(savedUserEmail);
-    const [password, setPassword] = useState(savedUserPassword);
-    const [lastName, setLastName] = useState(savedUserLastName);
-    const [firstName, setFirstName] = useState(savedUserFirstName);
+    const [email, setEmail] = useState(savedUser.email);
+    const [password, setPassword] = useState(savedUser.password);
+    const [lastName, setLastName] = useState(savedUser.lastName);
+    const [firstName, setFirstName] = useState(savedUser.firstName);
     const [message, setMessage] = useState("");
-
-    console.log(savedUserLastName, savedUserFirstName)
 
     //variable pour gérer le formulaire 
     const [inactive, setInactive] = useState(true);
@@ -25,7 +20,7 @@ const UserProfile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    //récupére les données dans le state
+    //get the data in the state for check later if the user is logged in
     const { isLoggedIn } = useSelector((state) => state);
 
     // check if user is logged in
@@ -37,7 +32,7 @@ const UserProfile = () => {
         [isLoggedIn, navigate]);
 
 
-    //modifie le data d'utilisateur
+    //get news values of user data
     const handleChange = (e) => {
         switch (e.target.id) {
             case "lastName":
@@ -74,10 +69,11 @@ const UserProfile = () => {
         }
     }
 
-    // supprime l'utilisateur
+    // supprime l'utilisateur and his orders
     const supprimer = () => {
 
         localStorage.removeItem("user");
+        localStorage.removeItem("order");
 
         dispatch({
             type: "DECONNECT_USER",
@@ -127,6 +123,7 @@ const UserProfile = () => {
                         type="password"
                         id="password"
                         value={password}
+                        disabled={inactive}
                         onChange={handleChange}
                     />
                 </div>

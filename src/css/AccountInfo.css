@@ -32,7 +32,10 @@
 }
 
 .commandes td {
-    padding: 1rem;
+    padding: 1rem 2rem;
+    background: #e9eced;
+    box-shadow: 0 1px 2px #0000002e;
+    -webkit-border-vertical-spacing: 1;
 }
 
 @media screen and (max-width: 980px) and (min-width: 780px) {

@@ -1,17 +1,25 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import UserProfile from "../Components/UserProfile";
 import "../css/AccountInfo.css";
 
 const AccountInformation = () => {
-    //get an order from localStorage
-    const [orders, setOrders] = useState(JSON.parse(localStorage.getItem("order")));
-    //console.log(orders);
+
     const navigate = useNavigate();
     const { isLoggedIn } = useSelector((state) => state);
-    console.log(orders)
 
+    //get the order and date from localStorage
+    const getData = JSON.parse(localStorage.getItem("order"));
+
+    const getOrder = getData?.products;
+    //console.log(getOrder)
+    const orders = [];
+    for (const i in getOrder) {
+        orders.push(getOrder[i]);
+    }
+
+    const date = getData?.date;
 
     // check if user is logged in
     useEffect(() => {
@@ -32,7 +40,8 @@ const AccountInformation = () => {
                 </div>
                 <div className="commandes">
                     <h2>Mes commandes</h2>
-                    <table className="">
+
+                    {orders.length !== 0 ? (<table className="">
                         <thead>
                             <tr>
                                 <th>Produit</th>
@@ -45,11 +54,14 @@ const AccountInformation = () => {
                                 <tr key={i}>
                                     <td>{order.name}</td>
                                     <td>{order.price} €</td>
-                                    <td>{new Date(order.date).toLocaleString()}</td>
+                                    {/* для преобразования даты используем этот метод */}
+                                    <td>{new Date(date).toLocaleString()}</td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+                    ) : (<p>Vous n'avez pas encore de commandes </p>)}
+
                 </div>
             </section>
         </>

@@ -9,7 +9,6 @@ const Cart = () => {
     //récupére des données dans le state global
     const { products, isLoggedIn, totalPrice } = useSelector((state) => state);
 
-    //const isLogged = localStorage.getItem("isLoggedIn");
     console.log(isLoggedIn);
     // appelle une action du reducer pour supprimer l'article
     const deleteProduct = (e) => {
@@ -22,12 +21,17 @@ const Cart = () => {
 
     // envoie une commande dans une bdd si l'user est connecté
     const validOrder = (e) => {
-        /*  if (donateurId === "" || donateurId == null) { */
         if (!isLoggedIn) {
             setMessage("Vous n'etes pas connecté");
         } else {
+            const oldOrder = JSON.parse(localStorage.getItem("order")); // нужно соединить новый и предыдущий заказы
             //adds an order in localStorage
-            localStorage.setItem("order", JSON.stringify(products));
+            const date = new Date();
+            const data = {
+                products: products,
+                date: date,
+            }
+            localStorage.setItem("order", JSON.stringify(data));
 
             dispatch({
                 type: "DELETE_ALL",
@@ -42,11 +46,11 @@ const Cart = () => {
                 <h1 className="title">Panier</h1>
                 <table>
                     <thead>
-                        <tr>
+                        {products.length > 0 && <tr>
                             <th>Article</th>
                             <th>Prix</th>
                             <th></th>
-                        </tr>
+                        </tr>}
                     </thead>
                     <tbody>
                         {products.map((prod, i) => {
@@ -79,7 +83,7 @@ const Cart = () => {
                     </div>
                 )}
                 {message !== "" && <p>{message}</p>}
-            </section>
+            </section >
         </>
     );
 };

@@ -68,6 +68,7 @@ header {
 .nav i:hover {
   background-color: #fff;
   color: #00748D;
+  border-radius: 10px;
 }
 
 .button-logout {
