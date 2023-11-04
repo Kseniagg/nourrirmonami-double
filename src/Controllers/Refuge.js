@@ -8,7 +8,9 @@ import "../css/Refuge.css";
 const Refuge = () => {
 
     const { id } = useParams();
+    console.log(id)
     const refuge = refuges[id];
+    console.log(refuge);
     const [products, setProducts] = useState(productsFile);
     const [message, setMessage] = useState("");
     const [active, setActive] = useState(false);
@@ -50,10 +52,10 @@ const Refuge = () => {
                 <article id={"#" + refuge.name}>
                     <h3>Refuge <span>"{refuge.name}"</span></h3>
                     <div className="info">
-                        {refuge.id === 1 && <img className="info_img" src="/img/background/refuge-cat.jpg" alt="chat" />}
-                        {refuge.id === 2 && <img className="info_img" src="/img/background/refuge-dog.jpg" alt="dog" />}
-                        {refuge.id === 3 && <img className="info_img" src="/img/background/refuge-rongeur.jpg" alt="poisson" />}
-                        {refuge.id === 4 && <img className="info_img" src="/img/background/refuge-poisson.jpg" alt="rongeur" />}
+                        {refuge.id === 0 && <img className="info_img" src="/img/background/refuge-cat.jpg" alt="chat" />}
+                        {refuge.id === 1 && <img className="info_img" src="/img/background/refuge-dog.jpg" alt="dog" />}
+                        {refuge.id === 2 && <img className="info_img" src="/img/background/refuge-rongeur.jpg" alt="poisson" />}
+                        {refuge.id === 3 && <img className="info_img" src="/img/background/refuge-poisson.jpg" alt="rongeur" />}
                         <div className="info_text">
                             <p>{refuge.description}</p>
                             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
