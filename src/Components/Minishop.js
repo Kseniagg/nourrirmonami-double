@@ -49,7 +49,7 @@ const Minishop = () => {
 
     return (
         <>
-            <section className="cards" id="minishop-section">
+            <section className="minishop cards" id="minishop-section">
                 {message !== "" && <p className={active ? "hidden" : "popup"} onClick={handleClick}>{message}</p>}
                 {productsAleatoires.map((prod, i) => (
                     <div className="card" key={i}>

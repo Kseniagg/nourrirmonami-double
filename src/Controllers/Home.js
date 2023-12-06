@@ -9,6 +9,7 @@ const Home = () => {
     const [offset, setOffset] = useState({ x: 0, y: 0 });
 
     const moveBackground = (e) => {
+        e.stopPropagation();
         const offsetX = (e.clientX / window.innerWidth * 50) - 25;
         const offsetY = (e.clientY / window.innerHeight * 30) - 15;
         setOffset({ x: offsetX, y: offsetY });
