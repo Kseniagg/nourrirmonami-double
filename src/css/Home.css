@@ -5,9 +5,6 @@
 .main {
     width: 100%;
     height: 37em;
-    background-image: url("../../public/img/background/cat_dog.jpg");
-    background-position: center;
-    background-size: cover;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -26,6 +23,33 @@
 
 .main_text p:nth-child(2) {
     font-size: 2em;
+}
+
+/* *****  PARALLAX ******* */
+
+.parallax {
+    position: absolute;
+    top: 83px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+
+.background-bones {
+    background: url("../../public/img/background/bones.png");
+    background-size: 40% 90%;
+    height: 70%;
+    z-index: 1;
+    filter: blur(0.3px);
+}
+
+.background-animals {
+    background: url("../../public/img/background/cat_dog_2.png");
+    background-repeat: no-repeat;
+    z-index: 2;
+    background-position: center;
+    background-size: 80%;
 }
 
 /* **********************    TOTAL   *********************** */
