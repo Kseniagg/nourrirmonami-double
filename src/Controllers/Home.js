@@ -10,7 +10,7 @@ const Home = () => {
 
     const moveBackground = (e) => {
         e.stopPropagation();
-        const offsetX = (e.clientX / window.innerWidth * 50) - 25;
+        const offsetX = (e.clientX / window.innerWidth * 90) - 45;
         const offsetY = (e.clientY / window.innerHeight * 30) - 15;
         setOffset({ x: offsetX, y: offsetY });
     };
@@ -22,7 +22,7 @@ const Home = () => {
                 <a href="#minishop-section">Minishop</a>
                 <a href="#total-section">Total</a>
             </div>
-            <section className="container main_section" id="main-section">
+            <section className="container" id="main-section">
                 <article className="main">
                     <div className="parallax background-animals"
                         onMouseMove={moveBackground}></div>
